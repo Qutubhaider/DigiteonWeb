@@ -40,6 +40,12 @@ namespace DigiteonWeb.Controllers
             return View("~/Views/Home/Contact.cshtml");
         }
 
+        [Route("services")]
+        public IActionResult Services()
+        {
+            return View("~/Views/Home/Services.cshtml");
+        }
+
         [Route("training-programs/scaled-agile")]
         public IActionResult ScaledAgile()
         {
