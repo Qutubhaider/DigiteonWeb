@@ -46,6 +46,30 @@ namespace DigiteonWeb.Controllers
             return View("~/Views/Home/Services.cshtml");
         }
 
+        [Route("careers")]
+        public IActionResult Careers()
+        {
+            return View("~/Views/Home/Careers.cshtml");
+        }
+
+        [Route("privacy-policy")]
+        public IActionResult Privacypolicy()
+        {
+            return View("~/Views/Home/Privacypolicy.cshtml");
+        }
+
+        [Route("terms-of-use")]
+        public IActionResult Termsofuse()
+        {
+            return View("~/Views/Home/Termsofuse.cshtml");
+        }
+
+        [Route("training-calendar")]
+        public IActionResult TrainingCalendar()
+        {
+            return View("~/Views/Home/TrainingCalendar.cshtml");
+        }
+
         [Route("training-programs/scaled-agile")]
         public IActionResult ScaledAgile()
         {
@@ -70,7 +94,7 @@ namespace DigiteonWeb.Controllers
             return View("~/Views/Home/ITConsulting.cshtml");
         }
 
-        [Route("services/training-program")]
+        [Route("services/training")]
         public IActionResult Training()
         {
             return View("~/Views/Home/TrainingProgram.cshtml");
@@ -82,7 +106,7 @@ namespace DigiteonWeb.Controllers
             return View("~/Views/Home/Recruitment.cshtml");
         }
 
-        [Route("services/it-development-and-maintenance")]
+        [Route("services/web-development-and-maintenance")]
         public IActionResult ITdevelopment()
         {
             return View("~/Views/Home/ITdevelopment.cshtml");

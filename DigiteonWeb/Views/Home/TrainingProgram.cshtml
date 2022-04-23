@@ -12,21 +12,58 @@
     <div class="container">
         <div class="page-header__inner">
             <ul class="thm-breadcrumb list-unstyled">
-                <li><a href="index-2.html">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                 <li><span>/</span></li>
                 <li>Services</li>
                 <li><span>/</span></li>
-                <li>Training Program</li>
+                <li>Training</li>
             </ul>
-            <h2>Training Program</h2>
+            <h2>Training</h2>
         </div>
     </div>
 </section>
-<section class="about">
+<section class="services-details">
     <div class="container">
         <div class="row">
-            <div class="col-xl-6 col-lg-6">
-                <h1 class="text-center">Coming Soon</h1>
+            <div class="col-xl-8 col-lg-7">
+                <div class="services-details__left">
+                    <div class="services-details__img">
+                        <img src="~/assets/images/services/services-details-img-1.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="services-details__bottom-box">
+                    <div class="services-details__bottom-box-single">
+                        <div class="services-details__top-content">
+                            <h2 class="services-details__top-title">Training </h2>
+                            <p class="services-details__top-text">
+                                We support our clients’ digital journeys by building crucial skills through our Training offerings helping them navigate complex transformations. We cover a wide array of Skill development providing cutting edge Trainings in the field of Agile, Cloud, Security, Data etc.
+                            </p>
+                            <p class="services-details__top-text">
+                                We identify and provide the right trainers as per your needs. We will be able to support your journey by equipping you with skills that will help you steer your organization.  Our Training methodologies are purpose-built to meet your current needs and help you to scale for your future.
+                            </p>
+                            <p class="services-details__top-text">
+                                Our trainers are experienced Corporate Professional with diverse experience working across multiple sectors with ample training experiences on their respective courses. Our trainers adopt the training classes as per your needs in order to make the training more efficient and effective.
+                            </p>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+            <div class="col-xl-4 col-lg-5">
+                <div class="services-details__sidebar">
+                    <div class="services-details__help-box">
+                        <div class="services-details__help-box-bg" style="background-image: url(~/assets/images/services/services-details-need-help-bg.jpg)">
+                        </div>
+                        <div class="services-details__help-box-bg-overly"></div>
+                        <h3 class="services-details__help-box-title">Need Help?</h3>
+                        <p class="services-details__help-box-text">
+                            Prefer speaking with a human to filling out a
+                            form? call corporate office and we will connect you with a team member who can help.
+                        </p>
+                        <a href="tel:+46-727602626" class="services-details__phone">+46-727602626</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
     <div class="container">
         <div class="page-header__inner">
             <ul class="thm-breadcrumb list-unstyled">
-                <li><a href="index-2.html">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                 <li><span>/</span></li>
                 <li>Services</li>
                 <li><span>/</span></li>
@@ -22,11 +22,45 @@
         </div>
     </div>
 </section>
-<section class="about">
+<section class="services-details">
     <div class="container">
         <div class="row">
-            <div class="col-xl-6 col-lg-6">
-                <h1 class="text-center">Coming Soon</h1>
+            <div class="col-xl-8 col-lg-7">
+                <div class="services-details__left">
+                    <div class="services-details__img">
+                        <img src="~/assets/images/services/services-details-img-1.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="services-details__bottom-box">
+                    <div class="services-details__bottom-box-single">
+                        <div class="services-details__top-content">
+                            <h2 class="services-details__top-title">Recruitment& Payroll Services </h2>
+                            <p class="services-details__top-text">
+                                We enable the end to end recruitment process for our clientsproviding access to our rich pool of candidates. We use a skill-contextual recruitment process to facilitate the right fit for both employers and candidates.
+                            </p>
+                            <p class="services-details__top-text">
+                                We ensure smooth and transparent payroll services by having local experts constantly keeping up to date with the latest regulation changes and perform all payroll services. We ensure you have minimal administration while we ensure your compliance with the local regulations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-5">
+                <div class="services-details__sidebar">
+                    <div class="services-details__help-box">
+                        <div class="services-details__help-box-bg" style="background-image: url(~/assets/images/services/services-details-need-help-bg.jpg)">
+                        </div>
+                        <div class="services-details__help-box-bg-overly"></div>
+                        <h3 class="services-details__help-box-title">Need Help?</h3>
+                        <p class="services-details__help-box-text">
+                            Prefer speaking with a human to filling out a
+                            form? call corporate office and we will connect you with a team member who can help.
+                        </p>
+                        <a href="tel:+46-727602626" class="services-details__phone">+46-727602626</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
