@@ -1,0 +1,205 @@
+﻿@using DigiteonWeb.Common
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title | Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="">
+
+    <!-- jvectormap -->
+    <link href="~/admin/assets/libs/jqvmap/jqvmap.min.css" rel="stylesheet" />
+
+    <!-- plugin css -->
+    <link href="~/admin/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="~/admin/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="~/admin/assets/libs/spectrum-colorpicker2/spectrum.min.css" rel="stylesheet" type="text/css">
+    <link href="~/admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Css -->
+    <link href="~/admin/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="~/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="~/admin/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        ._loading {
+            position: fixed; /* Sit on top of the page content */
+            display: none; /* Hidden by default */
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100%; /* Full height (cover the whole page) */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+            z-index: 100; /* Specify a stack order in case you're using a different order for other elements */
+            cursor: progress; /* Add a pointer on hover */
+            opacity: 0.7;
+        }
+
+        ._loading_img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            width: 100px;
+            height: 100px;
+            z-index: 200;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body data-sidebar="dark">
+
+    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box text-center">
+                       <img src="~/assets/images/logo-1.png" />
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                        <i class="ri-menu-2-line align-middle"></i>
+                    </button>
+
+                </div>
+
+                <div class="d-flex">
+                    <div class="dropdown d-inline-block user-dropdown">
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-account-circle-outline"></i>
+                            <span class="d-none d-xl-inline-block ms-1">Admin</span>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item text-danger" asp-area="" asp-controller="Home" asp-action="Logout"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu">
+
+            <div data-simplebar class="h-100">
+
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+
+                        <li>
+                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="waves-effect">
+                                <i class="mdi mdi-home-variant-outline"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-area="Admin" asp-controller="Training" asp-action="Index" class="waves-effect">
+                                <i class="mdi mdi-home-variant-outline"></i>
+                                <span>Training</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Digiteon.
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="~/admin/assets/libs/jquery/jquery.min.js"></script>
+    <script src="~/admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/admin/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/admin/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/admin/assets/libs/node-waves/waves.min.js"></script>
+
+
+
+    <!-- jquery.vectormap map -->
+    <script src="~/admin/assets/libs/jqvmap/jquery.vmap.min.js"></script>
+    <!--<script src="~/admin/assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>-->
+    <!-- plugins -->
+    <script src="~/admin/assets/libs/select2/js/select2.min.js"></script>
+    <script src="~/admin/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/admin/assets/libs/spectrum-colorpicker2/spectrum.min.js"></script>
+    <script src="~/admin/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="~/admin/assets/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
+    <script src="~/admin/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.css" integrity="sha256-He3QEBKoL/nMXlVsoM7S2C2kjFQqS5L+mgA+F8LpG+U=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" integrity="sha256-R91pD48xW+oHbpJYGn5xR0Q7tMhH4xOrWn1QqMRINtA=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha256-yNbKY1y6h2rbVcQtf0b8lq4a+xpktyFc3pSYoGAY1qQ=" crossorigin="anonymous"></script>
+
+    <!-- init js -->
+    <script src="~/admin/assets/js/pages/form-advanced.init.js"></script>
+
+    <script src="~/admin/assets/js/app.js"></script>
+    @RenderSection("Scripts", required: false)
+    @if (TempData["Message"] != null)
+    {
+        @if (Convert.ToInt32(TempData["ResultCode"]) == (int)CommonFunctions.ActionResponse.Error)
+        {
+            <script type="text/javascript">
+                toastr.error("@(TempData["Message"] as string)");
+            </script>
+        }
+        else if (Convert.ToInt32(TempData["ResultCode"]) == (int)CommonFunctions.ActionResponse.Warning)
+        {
+            <script type="text/javascript">
+                toastr.warning("@(TempData["Message"] as string)");
+            </script>
+        }
+        else
+        {
+            <script type="text/javascript">
+                toastr.success("@(TempData["Message"] as string)");
+            </script>
+        }
+    }
+</body>
+</html>

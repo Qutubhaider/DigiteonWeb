@@ -1,21 +1,32 @@
-﻿using DigiteonWeb.Models;
+﻿using DigiteonWeb.Common;
+using DigiteonWeb.Data;
+using DigiteonWeb.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using static DigiteonWeb.Common.CommonFunctions;
 
 namespace DigiteonWeb.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DatabaseContext moDatabaseContext;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, DatabaseContext foDatabaseContext)
         {
             _logger = logger;
+            moDatabaseContext = foDatabaseContext;
         }
 
         public IActionResult Index()
@@ -110,6 +121,82 @@ namespace DigiteonWeb.Controllers
         public IActionResult ITdevelopment()
         {
             return View("~/Views/Home/ITdevelopment.cshtml");
+        }
+
+        [Route("login")]
+        public IActionResult Login()
+        {
+            LoginVM loLoginVM = new LoginVM();
+            return View("~/Views/Home/Login.cshtml", loLoginVM);
+        }
+        public IActionResult AuthenticateUser(LoginVM foLoginVM)
+        {
+            try
+            {
+                LoginResult LoginResult = moDatabaseContext.Set<LoginResult>().FromSqlInterpolated($"EXEC getUserByEmail @stUserEmail={foLoginVM.stEmail}").AsEnumerable().FirstOrDefault();
+                if (LoginResult != null)
+                {
+                    if (foLoginVM.stPassword == LoginResult.stPassword)
+                    {
+                        if (LoginResult.inStatus == (int)CommonFunctions.UserStatus.InActive)
+                        {
+                            TempData["ResultCode"] = CommonFunctions.ActionResponse.Error;
+                            TempData["Message"] = string.Format(AlertMessage.UserInactive);
+                            return RedirectToAction("Login");
+                        }
+                        else
+                        {
+                            var claims = new List<Claim>();
+                            claims.Add(new Claim(SessionConstant.stEmail, LoginResult.stEmail));
+                            claims.Add(new Claim(SessionConstant.Id, LoginResult.inUserId.ToString()));
+                            claims.Add(new Claim(SessionConstant.stUserName, LoginResult.stUsername));
+                            claims.Add(new Claim(SessionConstant.unUserId, LoginResult.unUserId.ToString()));
+                            claims.Add(new Claim(SessionConstant.RoleId, LoginResult.inRole.ToString()));
+                            ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "Login");
+                            ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties { IsPersistent = true, ExpiresUtc = DateTimeOffset.UtcNow.AddHours(24) });
+
+                            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+
+                        }
+
+                    }
+                    else
+                    {
+                        TempData["ResultCode"] = CommonFunctions.ActionResponse.Error;
+                        TempData["Message"] = string.Format(AlertMessage.CredentialMisMatch);
+                        return RedirectToAction("Login");
+                    }
+                }
+                else
+                {
+                    TempData["ResultCode"] = CommonFunctions.ActionResponse.Error;
+                    TempData["Message"] = string.Format(AlertMessage.UserNotFound);
+                    return RedirectToAction("Login");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData["ResultCode"] = CommonFunctions.ActionResponse.Error;
+                TempData["Message"] = string.Format(AlertMessage.OperationalError, "login");
+                return RedirectToAction("Login");
+            }
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Logout()
+        {
+            try
+            {
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            }
+            catch (Exception e)
+            {
+
+                return RedirectToAction("Index", "Error");
+            }
+            return RedirectToAction("Login");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

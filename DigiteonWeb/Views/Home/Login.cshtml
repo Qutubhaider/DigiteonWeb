@@ -1,0 +1,62 @@
+﻿@model DigiteonWeb.Models.LoginVM
+@{
+    Layout = "_LayoutLogin";
+}
+<style type="text/css">
+    .card {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: midnightblue !important;
+        background-clip: border-box;
+        border: 0 solid #f1f5f7;
+        border-radius: 0.4rem;
+        opacity: 0.8;
+        color: white;
+    }
+</style>
+<p class="mb-5 text-center">Sign in to continue to digiteon.</p>
+<form class="form-horizontal" asp-area="" asp-controller="Home" asp-action="AuthenticateUser">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mb-4">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" asp-for="stEmail" class="form-control" id="username" placeholder="Enter username">
+                <span asp-validation-for="stEmail" class="text-danger"></span>
+            </div>
+            <div class="mb-4">
+                <label class="form-label" for="userpassword">Password</label>
+                <input asp-for="stPassword" type="password" class="form-control" id="userpassword" placeholder="Enter password">
+                <span asp-validation-for="stPassword" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="customControlInline">
+                        <label class="form-label" class="form-check-label" for="customControlInline">Remember me</label>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="text-md-end mt-3 mt-md-0">
+                        <a href="auth-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid mt-4">
+                <button class="btn btn-primary waves-effect waves-light" type="submit">Log In</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}
