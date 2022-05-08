@@ -47,11 +47,39 @@
 
     <!-- toolbar css -->
     <link rel="stylesheet" href="~/assets/css/aivons-toolbar.css">
+    <style type="text/css">
+        ._loading {
+            position: fixed; /* Sit on top of the page content */
+            display: none; /* Hidden by default */
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100%; /* Full height (cover the whole page) */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+            z-index: 100; /* Specify a stack order in case you're using a different order for other elements */
+            cursor: progress; /* Add a pointer on hover */
+            opacity: 0.7;
+        }
+
+        ._loading_img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            width: 100px;
+            height: 100px;
+            z-index: 200;
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
 
-   
+
 
     <div class="preloader">
         <div class="preloader__image"></div><!-- /.preloader__image -->
@@ -130,7 +158,7 @@
                                 <a href="#" class="clr-dri"><i class="fab fa-dribbble"></i></a>
                                 <a href="#" class="clr-ins"><i class="fab fa-instagram"></i></a>
                             </div>
-                        </div>                       
+                        </div>
                         <div class="main-menu-wrapper__phone-contact">
                             <p>Need help? Talk to an expert</p>
                             <a href="tel:+46-727602626">+46-727602626</a>
@@ -143,7 +171,7 @@
         <div class="stricky-header stricked-menu main-menu">
             <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
         </div><!-- /.stricky-header -->
-        
+
         @RenderBody()
         <!--Site Footer One Start-->
         <footer class="site-footer">
@@ -200,7 +228,7 @@
                                     <li><a asp-area="" asp-controller="Home" asp-action="Services">Services</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="TrainingCalendar">Training Calendar</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="Termsofuse">Terms of use</a></li>
-                                   @* <li><a href="/#help">Help</a></li>*@
+                                    @* <li><a href="/#help">Help</a></li>*@
                                 </ul>
                                 <ul class="footer-widget__explore-list footer-widget__explore-list-two list-unstyled">
                                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
@@ -344,6 +372,6 @@
     <script src="~/assets/js/lang.js"></script>
     <script src="../../translate.google.com/translate_a/elementa0d8.js?cb=googleTranslateElementInit"></script>
     <script src="~/assets/js/color-switcher.js"></script>
-
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

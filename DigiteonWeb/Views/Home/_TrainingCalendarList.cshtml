@@ -8,19 +8,14 @@
         <tr>
             @{
                 DateTime dtStartDate = Convert.ToDateTime(loTraining.dtStartDate);
-            }
-            <td>@dtStartDate.ToString("dd-MMM-yyyy").ToString()</td>
-            @{
                 DateTime dtEndDate = Convert.ToDateTime(loTraining.dtEndDate);
             }
-            <td>@dtEndDate.ToString("dd-MMM-yyyy").ToString()</td>
+            <td>@dtStartDate.ToString("MMM dd").ToString()  -<br /> @dtEndDate.ToString("MMM dd").ToString()</td>
             <td>@loTraining.stLocation</td>
             <td>@loTraining.stLanguage</td>
-            <td>@loTraining.stCourseName</td>
-            <td class="text-center">
-                <a asp-area="Admin" asp-controller="Training" asp-action="Detail" asp-route-id="@loTraining.unTrainingId" class="btn btn-outline-secondary btn-sm edit"><i class="fas fa-pencil-alt"></i> </a>
-                &nbsp;
-                <a asp-area="Admin" asp-controller="Training" asp-action="EnquiryList" asp-route-id="@loTraining.unTrainingId" class="btn btn-outline-secondary btn-sm edit"><i class="fas fa-eye"></i> </a>
+            <td>@loTraining.stCourseName</td> 
+            <td>
+                <a class="btnEnroll" asp-area="" asp-controller="Home" asp-action="Enroll" asp-route-cname="@loTraining.stCourseName.Trim().Replace(" ","-").ToLower()" asp-route-id="@loTraining.unTrainingId">Enroll</a>
             </td>
         </tr>
     }

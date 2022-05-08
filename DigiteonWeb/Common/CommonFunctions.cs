@@ -13,9 +13,9 @@ namespace DigiteonWeb.Common
         public const string RecordDeleted = "{0} deleted successfully.";
         public const string OperationalError = "Operational error in {0}.";
 
-        #region Project
+        #region SaveAlert
 
-        public const string SaveProject = "Project saved successfully.";
+        public const string SaveData = "Saved successfully.";
 
         #endregion
         #region Login

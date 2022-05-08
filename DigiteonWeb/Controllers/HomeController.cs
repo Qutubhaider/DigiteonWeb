@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -203,6 +204,82 @@ namespace DigiteonWeb.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult GetTraining(int? sort_column, string sort_order, int? pg, int? size)
+        {
+            try
+            {
+                string lsSearch = string.Empty;
+                int liTotalRecords = 0, liStartIndex = 0, liEndIndex = 0;
+                if (sort_column == 0 || sort_column == null)
+                    sort_column = 1;
+                if (string.IsNullOrEmpty(sort_order) || sort_order == "desc")
+                {
+                    sort_order = "desc";
+                    ViewData["sortorder"] = "asc";
+                }
+                else
+                {
+                    ViewData["sortorder"] = "desc";
+                }
+                if (pg == null || pg <= 0)
+                    pg = 1;
+                if (size == null || size.Value <= 0)
+                    size = 10;
+
+                List<TrainingResults> loTrainingResults = new List<TrainingResults>();
+                loTrainingResults = moDatabaseContext.Set<TrainingResults>().FromSqlInterpolated($"EXEC getTrainingList  @inSortColumn={sort_column},@stSortOrder={sort_order}, @inPageNo={pg.Value},@inPageSize={size.Value}").ToList();
+                dynamic loModel = new ExpandoObject();
+                loModel.GetTrainingList = loTrainingResults;
+                if (loTrainingResults.Count > 0)
+                {
+                    liTotalRecords = loTrainingResults[0].inRecordCount;
+                    liStartIndex = loTrainingResults[0].inRownumber;
+                    liEndIndex = loTrainingResults[loTrainingResults.Count - 1].inRownumber;
+                }
+                loModel.Pagination = PaginationService.getPagination(liTotalRecords, pg.Value, size.Value, liStartIndex, liEndIndex);
+                return PartialView("~/Views/Home/_TrainingCalendarList.cshtml", loModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+        }
+
+        [Route("training-calendar/{cname}/{id}")]
+        public IActionResult Enroll(Guid id,string cname)
+        {
+            EnrollDetails loEnrollDetails = new EnrollDetails();
+            loEnrollDetails.unTrainingId = id;
+            loEnrollDetails.stCourseName = cname;
+            return View("~/Views/Home/Enroll.cshtml", loEnrollDetails);
+        }
+
+        [Route("thank-you")]
+        public IActionResult ThankYou()
+        {
+            return View("~/Views/Home/ThankYou.cshtml");
+        }
+        public IActionResult SaveEnroll(EnrollDetails foEnrollDetails)
+        {
+            try
+            {
+                //SqlParameter loSuccess = new SqlParameter("@inSuccess", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                //moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC InsertStudentDetail @stStudentName={foStudentDetail.stStudentName}, @stMobile={foStudentDetail.stMobile}, @stCourseRef1={foStudentDetail.stCourseRef1}, @stCourseRef2={foStudentDetail.stCourseRef2}, @stCourseRef3={foStudentDetail.stCourseRef3}, @stCategory={foStudentDetail.stCategory}, @stQualification={foStudentDetail.stQualification}, @stDistrict={foStudentDetail.stDistrict}, @inSuccess={loSuccess} OUT");
+                int fiSuccess = 101; //Convert.ToInt32(loSuccess.Value);
+                if (fiSuccess == 101)
+                {
+                    return RedirectToAction("ThankYou");
+                }
+                else
+                    return RedirectToAction("Error");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error");
+            }
         }
     }
 }

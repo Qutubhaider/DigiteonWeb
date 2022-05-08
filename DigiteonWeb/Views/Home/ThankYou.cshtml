@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_LayoutAllPage";
+    ViewData["Title"] = "Thank you";
+}
+<style type="text/css">
+    footer.site-footer {
+        display: none;
+    }
+</style>
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="jumbotron text-center">
+        <h1 class="display-3" style="color: yellowgreen; font-weight: bold;">Thank You!</h1>
+        <p class="lead" style=" color: green; font-weight: bold;"><strong>Successfully</strong> submited your detail. Admin will conatct soon.</p>
+        <hr>
+        <p>
+            Having trouble? <a asp-controller="Home" asp-action="Contact">Contact us</a>
+        </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-sm" asp-controller="Home" asp-action="Index" role="button">Continue to homepage</a>
+        </p>
+    </div>
+</div>

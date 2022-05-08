@@ -1,7 +1,46 @@
 ﻿@{
     Layout = "_LayoutAllPage";
     ViewData["Title"] = "Training Calendar";
+    var loTableHeaders = new[]
+                  {
+        new {Id="1", Visible=true, Title="Date",      Sort = false,  dbColName = "dtStartDate",  CssClass = "w40 text-left"},
+        new {Id="3", Visible=true, Title="Location",       Sort = false,  dbColName = "stLocation",   CssClass = "w40 text-left"},
+        new {Id="4", Visible=true, Title="Language",       Sort = false,  dbColName = "stLanguage",   CssClass = "w40 text-left"},
+        new {Id="5", Visible=true, Title="Course Name",    Sort = false,  dbColName = "stCourseName", CssClass = "w40 text-left"},
+        new {Id="",  Visible=true, Title="",       Sort = false,  dbColName = "", CssClass = "w40 text-center"}
+    };
 }
+<style type="text/css">
+    th {
+        color: #6056EB;
+        font-weight: 400;
+        font-size: 25px;
+        font-family: Roobert,sans-serif;
+        padding:20px !important;
+    }
+    td {
+        font-weight: 400;
+        font-size: 25px;
+        font-family: Roobert,sans-serif;
+        padding: 20px !important;
+    }
+    .btnEnroll {
+        padding: 5px 80px 5px 80px;
+        color: white;
+        background: #6056EB;
+        border: 1px solid #6056EB;
+        float: right;
+        font-size: 27px;
+        font-family: Roobert,sans-serif;
+    }
+        .btnEnroll:hover {           
+            box-shadow: 0px 4px 4px rgb(38 39 58 / 24%);
+            -webkit-transform: scale(1.02);
+            -ms-transform: scale(1.02);
+            transform: scale(1.02);
+            color:white;
+        }
+</style>
 <!--Page Header Start-->
 <section class="page-header">
     <div class="page-header__bg"></div><!-- /.page-header__bg -->
@@ -23,9 +62,70 @@
 <section class="about">
     <div class="container">
         <div class="row">
-            <div class="col-xl-6 col-lg-6">
-                <h1 class="text-center">Coming Soon</h1>
+            <div class="col-12">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                    <div class="row d-none">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="dataTables_length" id="datatable_length">
+                                <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
+                            </div>
+                        </div>
+                    </div><div class="row">
+
+                        <div class="col-sm-12" id="TrainingList">
+                            <table id="datatable" class="table  dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        @{
+                                            int lsSortIndex = 0;
+                                            string lsSortOrder = "";
+                                            @foreach (var loHeader in loTableHeaders.Where(x => x.Visible == true))
+                                            {
+                                                <th class="@loHeader.CssClass" id="@loHeader.Id">
+                                                    @if (loHeader.Sort)
+                                                    {
+                                                        string lsSrtOrder = loHeader.Id.Equals(lsSortIndex) ? (lsSortOrder.Equals("asc") ? "desc" : "asc") : "asc";
+                                                        string lsSortingClass = loHeader.Id.Equals(lsSortIndex) ? (lsSortOrder.Equals("asc") ? "sorting" : "sorting_desc") : "";
+                                                        <a onclick="sort('@loHeader.Id',this);" href="Javascript:void(0);">@loHeader.Title</a>
+                                                    }
+                                                    else
+                                                        @loHeader.Title
+
+                                                </th>
+                                            }
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between mx-0 pagination_wrap d-none">
+                        <div class="dataTables_paginate paging_full_numbers clearfix text-center">
+                            <div class="pagination" id="paginationList">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
         </div>
     </div>
 </section>
+<input id="hdnPageNoListPanel" type="hidden" value="1" />
+@section Scripts {
+
+    <script src="~/Scripts/Common/Common.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        var msGetTrainingDataList = '@Url.Action("GetTraining")';
+        $(document).ready(function () {
+            getTrainingData();
+        });
+    </script>
+    <script src="~/Scripts/Training/TrainingList.js" asp-append-version="true"></script>
+}
