@@ -34,9 +34,9 @@ namespace DigiteonWeb.Areas.Admin.Controllers
             return View("~/Areas/Admin/Views/Training/TrainingDeatils.cshtml");
         }
 
-        public IActionResult EnquiryList()
+        public IActionResult EnquiryList(Guid id)
         {
-            return View("~/Areas/Admin/Views/Training/EnquiryList.cshtml");
+            return View("~/Areas/Admin/Views/Training/EnquiryList.cshtml", id);
         }
 
         [HttpPost]
@@ -96,6 +96,48 @@ namespace DigiteonWeb.Areas.Admin.Controllers
                 }
                 loModel.Pagination = PaginationService.getPagination(liTotalRecords, pg.Value, size.Value, liStartIndex, liEndIndex);
                 return PartialView("~/Areas/Admin/Views/Training/_TrainingList.cshtml", loModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+        }
+
+        public IActionResult GetEnroll(Guid TrainingId, int? sort_column, string sort_order, int? pg, int? size)
+        {
+            try
+            {
+                string lsSearch = string.Empty;
+                int liTotalRecords = 0, liStartIndex = 0, liEndIndex = 0;
+                if (sort_column == 0 || sort_column == null)
+                    sort_column = 1;
+                if (string.IsNullOrEmpty(sort_order) || sort_order == "desc")
+                {
+                    sort_order = "desc";
+                    ViewData["sortorder"] = "asc";
+                }
+                else
+                {
+                    ViewData["sortorder"] = "desc";
+                }
+                if (pg == null || pg <= 0)
+                    pg = 1;
+                if (size == null || size.Value <= 0)
+                    size = 10;
+
+                List<EnrollResults> loEnrollResults = new List<EnrollResults>();
+                loEnrollResults = moDatabaseContext.Set<EnrollResults>().FromSqlInterpolated($"EXEC getEnrollList @TrainingId={TrainingId}, @inSortColumn={sort_column},@stSortOrder={sort_order}, @inPageNo={pg.Value},@inPageSize={size.Value}").ToList();
+                dynamic loModel = new ExpandoObject();
+                loModel.GetEnrollgList = loEnrollResults;
+                if (loEnrollResults.Count > 0)
+                {
+                    liTotalRecords = loEnrollResults[0].inRecordCount;
+                    liStartIndex = loEnrollResults[0].inRownumber;
+                    liEndIndex = loEnrollResults[loEnrollResults.Count - 1].inRownumber;
+                }
+                loModel.Pagination = PaginationService.getPagination(liTotalRecords, pg.Value, size.Value, liStartIndex, liEndIndex);
+                return PartialView("~/Areas/Admin/Views/Training/_EnquiryList.cshtml", loModel);
             }
             catch (Exception ex)
             {

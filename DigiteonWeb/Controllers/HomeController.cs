@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
@@ -266,9 +268,9 @@ namespace DigiteonWeb.Controllers
         {
             try
             {
-                //SqlParameter loSuccess = new SqlParameter("@inSuccess", SqlDbType.Int) { Direction = ParameterDirection.Output };
-                //moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC InsertStudentDetail @stStudentName={foStudentDetail.stStudentName}, @stMobile={foStudentDetail.stMobile}, @stCourseRef1={foStudentDetail.stCourseRef1}, @stCourseRef2={foStudentDetail.stCourseRef2}, @stCourseRef3={foStudentDetail.stCourseRef3}, @stCategory={foStudentDetail.stCategory}, @stQualification={foStudentDetail.stQualification}, @stDistrict={foStudentDetail.stDistrict}, @inSuccess={loSuccess} OUT");
-                int fiSuccess = 101; //Convert.ToInt32(loSuccess.Value);
+                SqlParameter loSuccess = new SqlParameter("@inSuccess", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC saveEnroll @unTrainingId={foEnrollDetails.unTrainingId}, @stFirstName={foEnrollDetails.stFirstName}, @stLastName={foEnrollDetails.stLastName}, @stEmail={foEnrollDetails.stEmail}, @stMobile={foEnrollDetails.stMobile}, @stAboutDigiteon={foEnrollDetails.stAboutDigiteon}, @stAboutThis={foEnrollDetails.stAboutThis}, @inSuccess={loSuccess} OUT");
+                int fiSuccess = Convert.ToInt32(loSuccess.Value);
                 if (fiSuccess == 101)
                 {
                     return RedirectToAction("ThankYou");

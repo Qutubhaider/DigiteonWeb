@@ -2,7 +2,7 @@
     Layout = "_LayoutAllPage";
     ViewData["Title"] = "Training Calendar";
     var loTableHeaders = new[]
-                  {
+    {
         new {Id="1", Visible=true, Title="Date",      Sort = false,  dbColName = "dtStartDate",  CssClass = "w40 text-left"},
         new {Id="3", Visible=true, Title="Location",       Sort = false,  dbColName = "stLocation",   CssClass = "w40 text-left"},
         new {Id="4", Visible=true, Title="Language",       Sort = false,  dbColName = "stLanguage",   CssClass = "w40 text-left"},
@@ -16,14 +16,16 @@
         font-weight: 400;
         font-size: 25px;
         font-family: Roobert,sans-serif;
-        padding:20px !important;
+        padding: 20px !important;
     }
+
     td {
         font-weight: 400;
         font-size: 25px;
         font-family: Roobert,sans-serif;
         padding: 20px !important;
     }
+
     .btnEnroll {
         padding: 5px 80px 5px 80px;
         color: white;
@@ -33,13 +35,47 @@
         font-size: 27px;
         font-family: Roobert,sans-serif;
     }
-        .btnEnroll:hover {           
+
+        .btnEnroll:hover {
             box-shadow: 0px 4px 4px rgb(38 39 58 / 24%);
             -webkit-transform: scale(1.02);
             -ms-transform: scale(1.02);
             transform: scale(1.02);
-            color:white;
+            color: white;
         }
+
+    @@media screen and (min-width: 375px ) and (max-width:500px) {
+        th {
+            color: #6056EB;
+            font-size: 10px;
+            font-family: Roobert,sans-serif;
+            padding: 5px !important;
+        }
+
+        td {
+            font-size: 10px;
+            font-family: Roobert,sans-serif;
+            padding: 5px !important;
+        }
+
+        .btnEnroll {
+            padding: 2px;
+            color: white;
+            background: #6056EB;
+            border: 1px solid #6056EB;
+            float: right;
+            font-size: 12px;
+            font-family: Roobert,sans-serif;
+        }
+
+            .btnEnroll:hover {
+                box-shadow: 0px 4px 4px rgb(38 39 58 / 24%);
+                -webkit-transform: scale(1.02);
+                -ms-transform: scale(1.02);
+                transform: scale(1.02);
+                color: white;
+            }
+    }
 </style>
 <!--Page Header Start-->
 <section class="page-header">
@@ -63,10 +99,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-
-
                 <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-
                     <div class="row d-none">
                         <div class="col-sm-12 col-md-6">
                             <div class="dataTables_length" id="datatable_length">
@@ -74,8 +107,7 @@
                             </div>
                         </div>
                     </div><div class="row">
-
-                        <div class="col-sm-12" id="TrainingList">
+                        <div class="col-sm-12 table-responsive-sm" id="TrainingList">
                             <table id="datatable" class="table  dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
                                     <tr role="row">
@@ -93,7 +125,6 @@
                                                     }
                                                     else
                                                         @loHeader.Title
-
                                                 </th>
                                             }
                                         }
@@ -111,15 +142,12 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </section>
 <input id="hdnPageNoListPanel" type="hidden" value="1" />
 @section Scripts {
-
     <script src="~/Scripts/Common/Common.js" asp-append-version="true"></script>
     <script type="text/javascript">
         var msGetTrainingDataList = '@Url.Action("GetTraining")';
