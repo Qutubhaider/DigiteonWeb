@@ -54,4 +54,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\TrainingImages\" />
+  </ItemGroup>
+
 </Project>

@@ -3,6 +3,7 @@ using DigiteonWeb.Data;
 using DigiteonWeb.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 
 namespace DigiteonWeb.Areas.Admin.Controllers
@@ -19,10 +21,12 @@ namespace DigiteonWeb.Areas.Admin.Controllers
     public class TrainingController : Controller
     {
         private readonly DatabaseContext moDatabaseContext;
+        private readonly IWebHostEnvironment moWebHostEnvironment;
 
-        public TrainingController(DatabaseContext foDatabaseContext)
+        public TrainingController(DatabaseContext foDatabaseContext, IWebHostEnvironment foWebHostEnvironment)
         {
             moDatabaseContext = foDatabaseContext;
+            moWebHostEnvironment = foWebHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -44,8 +48,20 @@ namespace DigiteonWeb.Areas.Admin.Controllers
         {
             try
             {
+                if (foTrainingDetail.File != null)
+                {
+                    string loFolderPath = Path.Combine(moWebHostEnvironment.WebRootPath, "TrainingImages");
+                    foTrainingDetail.stUnFileName = Guid.NewGuid().ToString() + Path.GetExtension(foTrainingDetail.File.FileName);
+                    foTrainingDetail.stFileName = foTrainingDetail.File.FileName;
+                    string filePath = Path.Combine(loFolderPath, foTrainingDetail.stUnFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        foTrainingDetail.File.CopyTo(fileStream);
+                    }
+                }
+
                 SqlParameter loSuccess = new SqlParameter("@inSuccess", SqlDbType.Int) { Direction = ParameterDirection.Output };
-                moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC saveTraining @inTrainingId={foTrainingDetail.inTrainingId}, @dtStartDate={foTrainingDetail.dtStartDate}, @dtEndDate={foTrainingDetail.dtEndDate}, @stLocation={foTrainingDetail.stLocation}, @stLanguage={foTrainingDetail.stLanguage}, @stCourseName={foTrainingDetail.stCourseName},@inCreatedBy=1, @inSuccess={loSuccess} OUT");
+                moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC saveTraining @inTrainingId={foTrainingDetail.inTrainingId}, @dtStartDate={foTrainingDetail.dtStartDate}, @dtEndDate={foTrainingDetail.dtEndDate}, @stLocation={foTrainingDetail.stLocation}, @stLanguage={foTrainingDetail.stLanguage}, @stCourseName={foTrainingDetail.stCourseName},@inCreatedBy=1,@stDescription={foTrainingDetail.stDescription},@stFileName={foTrainingDetail.stFileName},@stUnFileName={foTrainingDetail.stUnFileName}, @inSuccess={loSuccess} OUT");
                 int fiSuccess = Convert.ToInt32(loSuccess.Value);
                 if (fiSuccess == 101)
                 {
