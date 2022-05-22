@@ -1,0 +1,115 @@
+﻿@model DigiteonWeb.Models.Career
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Career";
+}
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-8">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0">Add Career</h4>
+            </div>
+        </div>
+        <div class="col-4" style="float:right;">
+            <a class="btn btn-danger" style="float: right;" asp-area="Admin" asp-controller="Career" asp-action="Index">Back</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="SaveCareer" asp-controller="Career" asp-area="Admin" class="custom-validation" enctype="multipart/form-data" novalidate="">
+                        <div class="mb-3">
+                            <label class="form-label">Job Title</label>
+                            <input type="text" asp-for="stJobTitle" class="form-control" placeholder="Job Title">
+                            <span class="text-danger" asp-validation-for="stJobTitle"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Job Category</label>
+                            <input type="text" asp-for="stJobCategory" class="form-control" placeholder="Job Category">
+                            <span class="text-danger" asp-validation-for="stJobCategory"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Job Code</label>
+                            <input type="text" asp-for="stJobCode" class="form-control" placeholder="Job Code">
+                            <span class="text-danger" asp-validation-for="stJobCode"></span>
+                        </div>
+                          <div class="mb-3">
+                            <label class="form-label">Job Type</label>
+                            <input type="text" asp-for="stJobType" class="form-control" placeholder="Job Type">
+                            <span class="text-danger" asp-validation-for="stJobType"></span>
+                        </div>
+                           <div class="mb-3">
+                            <label class="form-label">Job Description</label>
+                            <input type="text" asp-for="stJobDescription" class="form-control" placeholder="Job Description">
+                            <span class="text-danger" asp-validation-for="stJobDescription"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Job Responsiblities</label>
+                            <input type="text" asp-for="stJobResponsiblities" class="form-control" placeholder="Job Responsiblities">
+                            <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">Job Required Skills</label>
+                            <input type="text" asp-for="stJobSkills" class="form-control" placeholder="Job Required Skills">
+                            <span class="text-danger" asp-validation-for="stJobSkills"></span>
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">Job Offer</label>
+                            <input type="text" asp-for="stOfferDescription" class="form-control" placeholder="Job Offer">
+                            <span class="text-danger" asp-validation-for="stOfferDescription"></span>
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">Job Advantages</label>
+                            <input type="text" asp-for="stJobAdvantages" class="form-control" placeholder="Job Advantages">
+                            <span class="text-danger" asp-validation-for="stJobAdvantages"></span>
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">CV</label>
+                            <input type="File" asp-for="CV" class="form-control" placeholder="CV">
+                            <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">Salary</label>
+                            <input type="text" asp-for="stSalary" class="form-control" placeholder="Salary">
+                            <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">Salary type</label>
+                            <input type="text" asp-for="stSalaryType" class="form-control" placeholder="Salary type">
+                            <span class="text-danger" asp-validation-for="stSalaryType"></span>
+                        </div>
+                         <div class="mb-3">
+                            <label class="form-label">Job Duration</label>
+                            <input type="text" asp-for="stJobDuration" class="form-control" placeholder="Job Duration">
+                            <span class="text-danger" asp-validation-for="stJobDuration"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Job Start Date</label>
+                            <input type="date" asp-for="dtStartDate" class="form-control" placeholder="Job Start Date">
+                            <span class="text-danger" asp-validation-for="dtStartDate"></span>
+                        </div>
+                        <div>
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
+                                    Submit
+                                </button>
+                                <a class="btn btn-secondary waves-effect" asp-area="Admin" asp-controller="Department" asp-action="Index">
+                                    Cancel
+                                </a>
+                            </div>
+                        </div>
+                        <input type="hidden" asp-for="inCareerId" />
+                        <input type="hidden" asp-for="unCareerId" />
+                        <input type="hidden" asp-for="stFileName" />
+                        <input type="hidden" asp-for="stUniqueFileName" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}

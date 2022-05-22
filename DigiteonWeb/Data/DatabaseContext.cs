@@ -18,6 +18,7 @@ namespace DigiteonWeb.Data
         public DbSet<Models.TrainingResults> TrainingResults { get; set; }
         public DbSet<Models.EnrollDetails> EnrollDetails { get; set; }
         public DbSet<Models.EnrollResults> EnrollResults { get; set; }
+        public DbSet<Models.Career> Career { get; set; }
         protected override void OnModelCreating(ModelBuilder foModelbuilder)
         {
             foModelbuilder.Entity<Models.LoginResult>().HasNoKey();
@@ -25,6 +26,7 @@ namespace DigiteonWeb.Data
             foModelbuilder.Entity<Models.TrainingResults>().HasNoKey();
             foModelbuilder.Entity<Models.EnrollDetails>().HasNoKey();
             foModelbuilder.Entity<Models.EnrollResults>().HasNoKey();
+            foModelbuilder.Entity<Models.Career>().HasNoKey();
             base.OnModelCreating(foModelbuilder);
         }
     }
