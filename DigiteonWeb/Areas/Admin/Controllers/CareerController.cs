@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DigiteonWeb.Areas.Admin.Controllers
@@ -18,6 +21,7 @@ namespace DigiteonWeb.Areas.Admin.Controllers
     {
         private readonly DatabaseContext moDatabaseContext;
         private readonly IWebHostEnvironment _env;
+        private readonly static int miPageSize = 10;
 
         public CareerController(DatabaseContext foDatabaseContext, IWebHostEnvironment env)
         {
@@ -28,6 +32,49 @@ namespace DigiteonWeb.Areas.Admin.Controllers
         {
             return View("~/Areas/Admin/Views/Career/Index.cshtml");
         }
+        public IActionResult GetCareerListData(string jobTitle, int? sort_column, string sort_order, int? pg, int? size)
+        {
+            StringBuilder lolog = new StringBuilder();
+            try
+            {
+                string lsSearch = string.Empty;
+                int liTotalRecords = 0, liStartIndex = 0, liEndIndex = 0;
+                if (sort_column == 0 || sort_column == null)
+                    sort_column = 1;
+                if (string.IsNullOrEmpty(sort_order) || sort_order == "desc")
+                {
+                    sort_order = "desc";
+                    ViewData["sortorder"] = "asc";
+                }
+                else
+                {
+                    ViewData["sortorder"] = "desc";
+                }
+                if (pg == null || pg <= 0)
+                    pg = 1;
+                if (size == null || size.Value <= 0)
+                    size = miPageSize;
+
+                List<CareerListResult> loCareerListResult = new List<CareerListResult>();
+                loCareerListResult = moDatabaseContext.Set<CareerListResult>().FromSqlInterpolated($"EXEC getCareerList @stJobTitle={jobTitle},@inSortColumn={sort_column},@stSortOrder={sort_order},@inPageNo={pg},@inPageSize={size}").ToList();
+                dynamic loModel = new ExpandoObject();
+                loModel.GetCareerList = loCareerListResult;
+                if (loCareerListResult.Count > 0)
+                {
+                    liTotalRecords = loCareerListResult[0].inRecordCount;
+                    liStartIndex = loCareerListResult[0].inRownumber;
+                    liEndIndex = loCareerListResult[loCareerListResult.Count - 1].inRownumber;
+                }
+                loModel.Pagination = PaginationService.getPagination(liTotalRecords, pg.Value, size.Value, liStartIndex, liEndIndex);
+                return PartialView("~/Areas/Admin/Views/Career/_CareerList.cshtml", loModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+        }
+
         public IActionResult Detail(Guid? id)
         {
             try
@@ -48,13 +95,14 @@ namespace DigiteonWeb.Areas.Admin.Controllers
         public async Task<IActionResult> SaveCareer(Career career)
         {
             try
-            {   if(career!=null)
+            {
+                if (career != null)
                 {
                     #region Save File
-                    if(career.CV!=null)
+                    if (career.CV != null)
                     {
-                        string lsUnFileName = Guid.NewGuid().ToString()+Path.GetExtension(career.CV.FileName);
-                        string lsLocalPath = Path.Combine(_env.WebRootPath, "Files", "Career") ;
+                        string lsUnFileName = Guid.NewGuid().ToString() + Path.GetExtension(career.CV.FileName);
+                        string lsLocalPath = Path.Combine(_env.WebRootPath, "Files", "Career");
                         if (!Directory.Exists(lsLocalPath))
                             Directory.CreateDirectory(lsLocalPath);
                         using (var stream = new FileStream(lsLocalPath + "/" + lsUnFileName, FileMode.Create))
@@ -75,7 +123,7 @@ namespace DigiteonWeb.Areas.Admin.Controllers
                         TempData["Message"] = string.Format(AlertMessage.SaveData);
                         return RedirectToAction("Index");
                     }
-                    else if(fiSuccess==102)
+                    else if (fiSuccess == 102)
                     {
                         TempData["ResultCode"] = CommonFunctions.ActionResponse.Update;
                         TempData["Message"] = string.Format(AlertMessage.SaveData);
@@ -91,6 +139,8 @@ namespace DigiteonWeb.Areas.Admin.Controllers
                 return RedirectToAction("Error");
             }
         }
+
+
 
     }
 }
