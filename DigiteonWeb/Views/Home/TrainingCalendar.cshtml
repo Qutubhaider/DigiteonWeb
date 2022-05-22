@@ -106,7 +106,8 @@
                                 <label>Show <select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label>
                             </div>
                         </div>
-                    </div><div class="row">
+                    </div>
+                    <div class="row">
                         <div class="col-sm-12 table-responsive-sm" id="TrainingList">
                             <table id="datatable" class="table  dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
                                 <thead>
@@ -116,16 +117,16 @@
                                             string lsSortOrder = "";
                                             @foreach (var loHeader in loTableHeaders.Where(x => x.Visible == true))
                                             {
-                                                <th class="@loHeader.CssClass" id="@loHeader.Id">
-                                                    @if (loHeader.Sort)
+                                            <th class="@loHeader.CssClass" id="@loHeader.Id">
+                                                @if (loHeader.Sort)
                                                     {
                                                         string lsSrtOrder = loHeader.Id.Equals(lsSortIndex) ? (lsSortOrder.Equals("asc") ? "desc" : "asc") : "asc";
                                                         string lsSortingClass = loHeader.Id.Equals(lsSortIndex) ? (lsSortOrder.Equals("asc") ? "sorting" : "sorting_desc") : "";
-                                                        <a onclick="sort('@loHeader.Id',this);" href="Javascript:void(0);">@loHeader.Title</a>
+                                                <a onclick="sort('@loHeader.Id',this);" href="Javascript:void(0);">@loHeader.Title</a>
                                                     }
                                                     else
-                                                        @loHeader.Title
-                                                </th>
+                                                @loHeader.Title
+                                            </th>
                                             }
                                         }
                                     </tr>
