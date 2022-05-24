@@ -30,11 +30,26 @@ namespace DigiteonWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            
             return View("~/Areas/Admin/Views/Training/Training.cshtml");
         }
 
-        public IActionResult Detail()
+        public IActionResult Detail(Guid id)
         {
+            try
+            {
+                TrainingDetail training = new TrainingDetail();
+                if(id!= Guid.Empty)
+                {
+                    training = moDatabaseContext.Set<TrainingDetail>().FromSqlInterpolated($"EXEC getTrainingDetail @unTrainingId={id}").AsEnumerable().FirstOrDefault();
+                }
+                return View("~/Areas/Admin/Views/Training/TrainingDeatils.cshtml",training);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
             return View("~/Areas/Admin/Views/Training/TrainingDeatils.cshtml");
         }
 
@@ -66,6 +81,12 @@ namespace DigiteonWeb.Areas.Admin.Controllers
                 if (fiSuccess == 101)
                 {
                     TempData["ResultCode"] = CommonFunctions.ActionResponse.Add;
+                    TempData["Message"] = string.Format(AlertMessage.SaveData);
+                    return RedirectToAction("Index");
+                }
+                else if (fiSuccess ==102)
+                {
+                    TempData["ResultCode"] = CommonFunctions.ActionResponse.Update;
                     TempData["Message"] = string.Format(AlertMessage.SaveData);
                     return RedirectToAction("Index");
                 }
