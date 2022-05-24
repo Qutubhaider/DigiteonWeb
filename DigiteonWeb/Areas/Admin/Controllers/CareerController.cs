@@ -140,6 +140,26 @@ namespace DigiteonWeb.Areas.Admin.Controllers
             }
         }
 
+        /*public IActionResult ApplyNow(Guid id)
+        {
+        [dbo].[saveCareerApplication]  
+            try
+            {
+                Career loCareer = new Career();
+                if (id != null)
+                {
+                    loCareer = moDatabaseContext.Set<Career>().FromSqlInterpolated($"EXEC getCareerDetail @unCareerId={id}").AsEnumerable().FirstOrDefault();
+                }
+                return View("~/Areas/Admin/Views/Career/Detail.cshtml", loCareer);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+
+        }*/
+
 
 
     }
