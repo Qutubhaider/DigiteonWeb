@@ -27,7 +27,7 @@
                             <span class="text-danger" asp-validation-for="stJobTitle"></span>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Job Category</label>
+                            <label class="form-label">Job Industry</label>
                             <input type="text" asp-for="stJobCategory" class="form-control" placeholder="Job Category">
                             <span class="text-danger" asp-validation-for="stJobCategory"></span>
                         </div>
@@ -43,33 +43,33 @@
                         </div>
                            <div class="mb-3">
                             <label class="form-label">Job Description</label>
-                            <input type="text" asp-for="stJobDescription" class="form-control" placeholder="Job Description">
+                            <textarea asp-for="stJobDescription" class="form-control" placeholder="Job Description"></textarea>
                             <span class="text-danger" asp-validation-for="stJobDescription"></span>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Job Responsiblities</label>
-                            <input type="text" asp-for="stJobResponsiblities" class="form-control" placeholder="Job Responsiblities">
+                            <textarea asp-for="stJobResponsiblities" class="form-control" placeholder="Job Responsiblities"></textarea>
                             <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Job Required Skills</label>
-                            <input type="text" asp-for="stJobSkills" class="form-control" placeholder="Job Required Skills">
+                            <textarea asp-for="stJobSkills" class="form-control" placeholder="Job Required Skills"></textarea>
                             <span class="text-danger" asp-validation-for="stJobSkills"></span>
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Job Offer</label>
-                            <input type="text" asp-for="stOfferDescription" class="form-control" placeholder="Job Offer">
+                            <textarea asp-for="stOfferDescription" class="form-control" placeholder="Job Offer"></textarea>
                             <span class="text-danger" asp-validation-for="stOfferDescription"></span>
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Job Advantages</label>
-                            <input type="text" asp-for="stJobAdvantages" class="form-control" placeholder="Job Advantages">
+                            <textarea asp-for="stJobAdvantages" class="form-control" placeholder="Job Advantages"></textarea>
                             <span class="text-danger" asp-validation-for="stJobAdvantages"></span>
                         </div>
-                         <div class="mb-3">
+                         <div class="mb-3" style="display:none;">
                             <label class="form-label">CV</label>
                             <input type="File" asp-for="CV" class="form-control" placeholder="CV">
-                            <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>
+                            @*<span class="text-danger" asp-validation-for="stJobResponsiblities"></span>*@
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Salary</label>
@@ -77,7 +77,7 @@
                             <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>
                         </div>
                          <div class="mb-3">
-                            <label class="form-label">Salary type</label>
+                            <label class="form-label">Salary Type</label>
                             <input type="text" asp-for="stSalaryType" class="form-control" placeholder="Salary type">
                             <span class="text-danger" asp-validation-for="stSalaryType"></span>
                         </div>

@@ -42,6 +42,58 @@
 <!--Message Box Start-->
 <section class="message-box">
     <div class="container">
+
+        <section class="cases-details">
+            <div class="container">
+                @if (!string.IsNullOrEmpty(Model.stFileName))
+                {
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="cases-details__img">
+                                <img src="~/TrainingImages/@Model.stUnFileName" alt="">
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="cases-details__left">
+                            <div class="cases-details__content">                               
+                                <h2 class="cases-details__title">@Model.stCourseName</h2>
+                                <p class="cases-details__text-1">@Model.stDescription</p>
+                            </div>
+                        </div>
+                    </div>
+                    @{
+                        DateTime dtStartDate = Convert.ToDateTime(Model.dtStartDate);
+                        DateTime dtEndDate = Convert.ToDateTime(Model.dtEndDate);
+                    }
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="cases-details__right">
+                            <ul class="cases-details__right-list list-unstyled">
+                                <li>
+                                    <p>Start Date:</p>
+                                    <span>@dtStartDate.ToString("MMM dd, yyyy").ToString()</span>
+                                </li>
+                                <li>
+                                    <p>End Date</p>
+                                    <span>@dtEndDate.ToString("MMM dd, yyyy").ToString()</span>
+                                </li>
+                                <li>
+                                    <p>Location:</p>
+                                    <span>@Model.stLocation</span>
+                                </li>
+                                <li>
+                                    <p>Language:</p>
+                                    <span>@Model.stLanguage</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div class="row">
             <div class="col-xl-12 col-lg-7">
                 <div class="message-box__right">

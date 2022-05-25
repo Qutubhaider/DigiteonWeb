@@ -253,10 +253,21 @@ namespace DigiteonWeb.Controllers
         [Route("training-calendar/{cname}/{id}")]
         public IActionResult Enroll(Guid id,string cname)
         {
-            EnrollDetails loEnrollDetails = new EnrollDetails();
-            loEnrollDetails.unTrainingId = id;
-            loEnrollDetails.stCourseName = cname;
-            return View("~/Views/Home/Enroll.cshtml", loEnrollDetails);
+            try
+            {
+                EnrollDetails loEnrollDetail = new EnrollDetails();
+                loEnrollDetail.unTrainingId = id;
+                if (id != Guid.Empty)
+                {
+                    loEnrollDetail = moDatabaseContext.Set<EnrollDetails>().FromSqlInterpolated($"EXEC getTrainingDetail @unTrainingId={id}").AsEnumerable().FirstOrDefault();
+                }
+                return View("~/Views/Home/Enroll.cshtml", loEnrollDetail);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+           
         }
 
         [Route("thank-you")]
@@ -283,5 +294,7 @@ namespace DigiteonWeb.Controllers
                 return RedirectToAction("Error");
             }
         }
+
+        
     }
 }
