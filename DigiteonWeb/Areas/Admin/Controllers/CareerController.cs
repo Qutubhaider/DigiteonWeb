@@ -140,25 +140,68 @@ namespace DigiteonWeb.Areas.Admin.Controllers
             }
         }
 
-        /*public IActionResult ApplyNow(Guid id)
+        public IActionResult ApplyNow(Guid id)
         {
-        [dbo].[saveCareerApplication]  
+          
             try
             {
-                Career loCareer = new Career();
-                if (id != null)
-                {
-                    loCareer = moDatabaseContext.Set<Career>().FromSqlInterpolated($"EXEC getCareerDetail @unCareerId={id}").AsEnumerable().FirstOrDefault();
-                }
-                return View("~/Areas/Admin/Views/Career/Detail.cshtml", loCareer);
+                CareerApplication application = new CareerApplication();
+                application.unCareerId = id;
+                return View("~/Areas/Admin/Views/Career/ApplicationDetail.cshtml", application);
             }
             catch (Exception ex)
             {
                 return RedirectToAction("Index", "Error");
             }
+        }
+        public async Task<IActionResult> SaveCareerApplication(CareerApplication application)
+        {
+            try
+            {
+                if (application != null)
+                {
+                    #region Save File
+                    if (application.CV != null)
+                    {
+                        string lsUnFileName = Guid.NewGuid().ToString() + Path.GetExtension(application.CV.FileName);
+                        string lsLocalPath = Path.Combine(_env.WebRootPath, "Files", "Career");
+                        if (!Directory.Exists(lsLocalPath))
+                            Directory.CreateDirectory(lsLocalPath);
+                        using (var stream = new FileStream(lsLocalPath + "/" + lsUnFileName, FileMode.Create))
+                        {
+                            await application.CV.CopyToAsync(stream);
+                        }
+                        application.stFileName = application.CV.FileName;
+                        application.stUnFileName = lsUnFileName;
+                    }
+                    #endregion
 
+                    SqlParameter loSuccess = new SqlParameter("@inSuccess", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC saveCareerApplication @unCareerId={application.unCareerId} ,@inCareerApplicationId={application.inCareerApplicationId},@stName={application.stName} ,@stEmail={application.stEmail} ,@stMessage={application.stMessage} ,@stFileName={application.stFileName} ,@stUnFileName={application.stUnFileName},@inSuccess={loSuccess} OUT");
+                    int fiSuccess = Convert.ToInt32(loSuccess.Value);
+                    if (fiSuccess == 101)
+                    {
+                        TempData["ResultCode"] = CommonFunctions.ActionResponse.Add;
+                        TempData["Message"] = string.Format(AlertMessage.SaveData);
+                        return RedirectToAction("Index");
+                    }
+                    else if (fiSuccess == 102)
+                    {
+                        TempData["ResultCode"] = CommonFunctions.ActionResponse.Update;
+                        TempData["Message"] = string.Format(AlertMessage.SaveData);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                        return RedirectToAction("Error");
+                }
+                return RedirectToAction("Error");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error");
+            }
 
-        }*/
+        }
 
 
 
