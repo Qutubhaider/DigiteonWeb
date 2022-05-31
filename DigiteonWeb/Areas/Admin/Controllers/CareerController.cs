@@ -203,6 +203,60 @@ namespace DigiteonWeb.Areas.Admin.Controllers
 
         }
 
+        public IActionResult CreerApplicationList(Guid id)
+        {
+            Career loCareer = new Career();
+            if (id != null)
+            {
+                loCareer = moDatabaseContext.Set<Career>().FromSqlInterpolated($"EXEC getCareerDetail @unCareerId={id}").AsEnumerable().FirstOrDefault();
+            }
+            return View("~/Areas/Admin/Views/Career/CareerApplicationList.cshtml", loCareer);
+
+        }
+
+        public IActionResult GetCreerApplicationListData(string applicantName, int inCareerId, int? sort_column, string sort_order, int? pg, int? size)
+        {
+            StringBuilder lolog = new StringBuilder();
+            try
+            {
+                string lsSearch = string.Empty;
+                int liTotalRecords = 0, liStartIndex = 0, liEndIndex = 0;
+                if (sort_column == 0 || sort_column == null)
+                    sort_column = 1;
+                if (string.IsNullOrEmpty(sort_order) || sort_order == "desc")
+                {
+                    sort_order = "desc";
+                    ViewData["sortorder"] = "asc";
+                }
+                else
+                {
+                    ViewData["sortorder"] = "desc";
+                }
+                if (pg == null || pg <= 0)
+                    pg = 1;
+                if (size == null || size.Value <= 0)
+                    size = miPageSize;
+
+                List<ApplicantListResult> loCareerApplicationListResult = new List<ApplicantListResult>();
+                loCareerApplicationListResult = moDatabaseContext.Set<ApplicantListResult>().FromSqlInterpolated($"EXEC getCareerApplicationList  @stApplicantName={applicantName},@inCareerId={inCareerId},@inSortColumn={sort_column},@stSortOrder={sort_order},@inPageNo={pg},@inPageSize={size}").ToList();
+                dynamic loModel = new ExpandoObject();
+                loModel.GetCareerApplicationList = loCareerApplicationListResult;
+                if (loCareerApplicationListResult.Count > 0)
+                {
+                    liTotalRecords = loCareerApplicationListResult[0].inRecordCount;
+                    liStartIndex = loCareerApplicationListResult[0].inRownumber;
+                    liEndIndex = loCareerApplicationListResult[loCareerApplicationListResult.Count - 1].inRownumber;
+                }
+                loModel.Pagination = PaginationService.getPagination(liTotalRecords, pg.Value, size.Value, liStartIndex, liEndIndex);
+                return PartialView("~/Areas/Admin/Views/Career/_CareerApplicationList.cshtml", loModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+        }
+
 
 
     }

@@ -21,6 +21,7 @@ namespace DigiteonWeb.Data
         public DbSet<Models.Career> Career { get; set; }
         public DbSet<Models.CareerListResult> CareerListResult { get; set; }
         public DbSet<Models.CareerApplication> CareerApplication { get; set; }
+        public DbSet<Models.ApplicantListResult> ApplicantListResult { get; set; }
         protected override void OnModelCreating(ModelBuilder foModelbuilder)
         {
             foModelbuilder.Entity<Models.LoginResult>().HasNoKey();
@@ -31,6 +32,7 @@ namespace DigiteonWeb.Data
             foModelbuilder.Entity<Models.Career>().HasNoKey();
             foModelbuilder.Entity<Models.CareerListResult>().HasNoKey();
             foModelbuilder.Entity<Models.CareerApplication>().HasNoKey();
+            foModelbuilder.Entity<Models.ApplicantListResult>().HasNoKey();
             base.OnModelCreating(foModelbuilder);
         }
     }

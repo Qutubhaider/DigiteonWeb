@@ -1,0 +1,117 @@
+﻿@model DigiteonWeb.Models.Career
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewBag.Title = "Career";
+    var loTableHeaders = new[]
+                          {
+        new {Id="1", Visible=true, Title="Applicant Name",      Sort = true,  dbColName = "stName",  CssClass = "w40 text-left"},
+        new {Id="2", Visible=true, Title="Applicant Email",       Sort = false,  dbColName = "stEmail",    CssClass = "w40 text-left"},
+        new {Id="3", Visible=true, Title="Application Date",       Sort = false,  dbColName = "dtCreattionDate",   CssClass = "w40 text-left"},
+        new {Id="4",  Visible=false, Title="Action",       Sort = false,  dbColName = "", CssClass = "w40 text-center"}
+    };
+}
+<!-- start page title -->
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-8">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0">Manage Application List</h4>
+                <h5 class="mb-sm-0">Job Title: @Model.stJobTitle</h5>
+                <h6 class="mb-sm-0">Job Title: @Model.stJobCode</h6>
+                <input type="hidden" id="hdnInCareerId" asp-for="inCareerId"/>
+            </div>
+        </div>
+        <div class="col-4" style="float:right;">
+            <a class="btn btn-info" style="float: right;" asp-area="Admin" asp-controller="Career" asp-action="ApplicationDetail">Add Applicant</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="dataTables_length" id="datatable_length">
+                                    <label>
+                                        Show
+                                        <select id="ddPageSize" onchange="getCareerApplicationData();" name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entries
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div id="datatable_filter" class="dataTables_filter">
+                                    <label>
+                                        Search:<input type="search" id="txtApplicantName" class="form-control form-control-sm" placeholder="" aria-controls="datatable">
+                                        <button onclick="getCareerApplicationData();">Search</button>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-12" id="CareerApplicationList">
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                    <thead>
+                                        <tr role="row">
+                                            @{
+                                                int lsSortIndex = 0;
+                                                string lsSortOrder = "";
+                                                @foreach (var loHeader in loTableHeaders.Where(x => x.Visible == true))
+                                                {
+                                                    <th class="@loHeader.CssClass" id="@loHeader.Id">
+                                                        @if (loHeader.Sort)
+                                                        {
+                                                            string lsSrtOrder = loHeader.Id.Equals(lsSortIndex) ? (lsSortOrder.Equals("asc") ? "desc" : "asc") : "asc";
+                                                            string lsSortingClass = loHeader.Id.Equals(lsSortIndex) ? (lsSortOrder.Equals("asc") ? "sorting" : "sorting_desc") : "";
+                                                            <a onclick="sort('@loHeader.Id',this);" href="Javascript:void(0);">@loHeader.Title</a>
+                                                        }
+                                                        else
+                                                            @loHeader.Title
+                                                     </th>
+                                                }
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between mx-0 pagination_wrap">
+                            <div class="dataTables_paginate paging_full_numbers clearfix text-center">
+                                <div class="pagination" id="paginationList">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<input id="hdnPageNoListPanel" type="hidden" value="1" />
+@section Scripts {
+
+<script src="~/Scripts/Common/Common.js" asp-append-version="true"></script>
+<script type="text/javascript">
+        var msGetCareerApplicationDataList = '@Url.Action("GetCreerApplicationListData")';
+        $(document).ready(function () {
+            getCareerApplicationData();
+
+    });
+</script>
+<script src="~/Scripts/Career/CareerApplicationList.js" asp-append-version="true"></script>
+}

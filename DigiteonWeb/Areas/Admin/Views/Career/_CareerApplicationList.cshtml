@@ -1,0 +1,38 @@
+﻿@model dynamic
+@using DigiteonWeb.Models
+
+@if (Model.GetCareerApplicationList != null && Model.GetCareerApplicationList.Count > 0)
+{
+    foreach (ApplicantListResult applicant in Model.GetCareerApplicationList)
+    {
+        <tr>
+            <td>@applicant.stName</td>
+            <td>@applicant.stEmail</td>
+            @{
+                DateTime dtCreateDate = Convert.ToDateTime(applicant.dtCreateDate);
+            }
+            <td>@dtCreateDate.ToString("dd-MMM-yyyy").ToString()</td>
+            
+            
+            <td class="text-center">
+                <a asp-area="Admin" asp-controller="Career" asp-action="CreerApplicationList" asp-route-id="@applicant.stUnFileName" class="btn btn-outline-secondary btn-sm edit">Download CV</a>
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="8" class="text-center py-5">No records found.</td>
+    </tr>
+}
+
+@{
+    Pagination loPagination = Model.Pagination;
+
+    <input type="hidden" id="hdnCurrentPage" value="@loPagination.inCurrentPage">
+    <input type="hidden" id="hdnTotalPage" value="@loPagination.inTotalPages" />
+    <input type="hidden" id="hdnTotalRecords" value="@loPagination.inTotalRecords" />
+    <input type="hidden" id="hdnNoOfRecordsMessage" value="@loPagination.stNoOfRecordsMessage" />
+
+}
