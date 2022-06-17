@@ -9,6 +9,9 @@ namespace DigiteonWeb.Models
     {
         public int inCareerApplicationId {get;set;}
         public Guid unCareerApplicationId {get;set;}
+
+        [NotMapped]
+        public string stJobName { get; set; }
         public Guid unCareerId            {get;set;}
         [Required(ErrorMessage="Name is required")]
         public string stName                {get;set;}

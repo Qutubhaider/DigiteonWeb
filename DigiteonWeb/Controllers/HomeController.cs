@@ -4,6 +4,7 @@ using DigiteonWeb.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -23,13 +25,15 @@ namespace DigiteonWeb.Controllers
     public class HomeController : Controller
     {
         private readonly DatabaseContext moDatabaseContext;
+        private readonly IWebHostEnvironment _env;
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, DatabaseContext foDatabaseContext)
+        public HomeController(ILogger<HomeController> logger, DatabaseContext foDatabaseContext, IWebHostEnvironment env)
         {
             _logger = logger;
             moDatabaseContext = foDatabaseContext;
+            _env = env;
         }
 
         public IActionResult Index()
@@ -295,6 +299,110 @@ namespace DigiteonWeb.Controllers
             }
         }
 
-        
+        public IActionResult GetCareerListData(string jobTitle, int? sort_column, string sort_order, int? pg, int? size)
+        {
+            try
+            {
+                string lsSearch = string.Empty;
+                int liTotalRecords = 0, liStartIndex = 0, liEndIndex = 0;
+                if (sort_column == 0 || sort_column == null)
+                    sort_column = 1;
+                if (string.IsNullOrEmpty(sort_order) || sort_order == "desc")
+                {
+                    sort_order = "desc";
+                    ViewData["sortorder"] = "asc";
+                }
+                else
+                {
+                    ViewData["sortorder"] = "desc";
+                }
+                if (pg == null || pg <= 0)
+                    pg = 1;
+                if (size == null || size.Value <= 0)
+                    size = 10;
+
+                List<CareerListResult> loCareerListResult = new List<CareerListResult>();
+                loCareerListResult = moDatabaseContext.Set<CareerListResult>().FromSqlInterpolated($"EXEC getCareerList @stJobTitle={jobTitle},@inSortColumn={sort_column},@stSortOrder={sort_order},@inPageNo={pg},@inPageSize={size}").ToList();
+                dynamic loModel = new ExpandoObject();
+                loModel.GetCareerList = loCareerListResult;
+                if (loCareerListResult.Count > 0)
+                {
+                    liTotalRecords = loCareerListResult[0].inRecordCount;
+                    liStartIndex = loCareerListResult[0].inRownumber;
+                    liEndIndex = loCareerListResult[loCareerListResult.Count - 1].inRownumber;
+                }
+                loModel.Pagination = PaginationService.getPagination(liTotalRecords, pg.Value, size.Value, liStartIndex, liEndIndex);
+                return PartialView("~/Views/Home/_CareerList.cshtml", loModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+        }
+
+        [Route("careers/apply-now/{jname}/{id}")]
+        public IActionResult ApplyNow(Guid id,string jname)
+        {
+            try
+            {
+                CareerApplication application = new CareerApplication();
+                application.unCareerId = id;
+                application.stJobName= jname;
+                return View("~/Views/Home/ApplicationDetail.cshtml", application);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+        }
+        public async Task<IActionResult> SaveCareerApplication(CareerApplication application)
+        {
+            try
+            {
+                if (application != null)
+                {
+                    #region Save File
+                    if (application.CV != null)
+                    {
+                        string lsUnFileName = Guid.NewGuid().ToString() + Path.GetExtension(application.CV.FileName);
+                        string lsLocalPath = Path.Combine(_env.WebRootPath, "Files", "Career");
+                        if (!Directory.Exists(lsLocalPath))
+                            Directory.CreateDirectory(lsLocalPath);
+                        using (var stream = new FileStream(lsLocalPath + "/" + lsUnFileName, FileMode.Create))
+                        {
+                            await application.CV.CopyToAsync(stream);
+                        }
+                        application.stFileName = application.CV.FileName;
+                        application.stUnFileName = lsUnFileName;
+                    }
+                    #endregion
+
+                    SqlParameter loSuccess = new SqlParameter("@inSuccess", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC saveCareerApplication @unCareerId={application.unCareerId} ,@inCareerApplicationId={application.inCareerApplicationId},@stName={application.stName} ,@stEmail={application.stEmail} ,@stMessage={application.stMessage} ,@stFileName={application.stFileName} ,@stUnFileName={application.stUnFileName},@inSuccess={loSuccess} OUT");
+                    int fiSuccess = Convert.ToInt32(loSuccess.Value);
+                    if (fiSuccess == 101)
+                    {
+                        TempData["ResultCode"] = CommonFunctions.ActionResponse.Add;
+                        TempData["Message"] = string.Format(AlertMessage.SaveData);
+                        return RedirectToAction("Index");
+                    }
+                    else if (fiSuccess == 102)
+                    {
+                        TempData["ResultCode"] = CommonFunctions.ActionResponse.Update;
+                        TempData["Message"] = string.Format(AlertMessage.SaveData);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                        return RedirectToAction("Error");
+                }
+                return RedirectToAction("Error");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error");
+            }
+
+        }
     }
 }

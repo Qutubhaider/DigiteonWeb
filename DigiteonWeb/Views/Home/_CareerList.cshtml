@@ -1,0 +1,41 @@
+﻿@model dynamic
+@using DigiteonWeb.Models
+
+@if (Model.GetCareerList != null && Model.GetCareerList.Count > 0)
+{
+    foreach (CareerListResult career in Model.GetCareerList)
+    {
+        <tr>
+            <td>@career.stJobTitle</td>
+            @*<td>@career.stJobCategory</td>
+            <td>@career.stJobCode</td>
+            <td>@career.stJobType</td>
+            <td>@career.stSalary</td>*@
+            @*@{
+                DateTime dtStartDate = Convert.ToDateTime(career.dtStartDate);
+            }
+            <td>@dtStartDate.ToString("dd-MMM-yyyy").ToString()</td>
+            *@
+            
+            <td class="text-center">                
+                <a asp-area="" asp-controller="Home" asp-action="ApplyNow" asp-route-jname="@career.stJobTitle.Trim().Replace(" ","-").ToLower()" asp-route-id="@career.unCareerId" class="btnEnroll">ApplyNow</a>                
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td colspan="8" class="text-center py-5">No records found.</td>
+    </tr>
+}
+
+@{
+    Pagination loPagination = Model.Pagination;
+
+    <input type="hidden" id="hdnCurrentPage" value="@loPagination.inCurrentPage">
+    <input type="hidden" id="hdnTotalPage" value="@loPagination.inTotalPages" />
+    <input type="hidden" id="hdnTotalRecords" value="@loPagination.inTotalRecords" />
+    <input type="hidden" id="hdnNoOfRecordsMessage" value="@loPagination.stNoOfRecordsMessage" />
+
+}
