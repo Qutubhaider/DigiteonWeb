@@ -52,13 +52,12 @@
 </head>
 
 <body>
-    <div class="alert text-center cookiealert show" role="alert">
-        <b>Do you like cookies?</b>We use cookies to ensure you get the best experience on our website. <a href="#" target="_blank">Learn more</a>
-
+   @* <div class="alert text-center cookiealert show" role="alert">
+        We use cookies to improve your experience on our website. By browsing this website, you agree to our use of cookies.
         <button type="button" class="btn btn-primary btn-sm acceptcookies">
-            I agree
+            Accept
         </button>
-    </div>
+    </div>*@
     <div class="preloader">
         <div class="preloader__image"></div><!-- /.preloader__image -->
     </div>
@@ -351,6 +350,30 @@
     <script src="../../translate.google.com/translate_a/elementa0d8.js?cb=googleTranslateElementInit"></script>
     <script src="~/assets/js/color-switcher.js"></script>
     <script src="~/js/cookiealert.js" type="text/javascript"></script>
+     <link rel="stylesheet" type="text/css" href="~/css/default.css">
+    <script type="text/javascript" src="~/css/CookieInfo.min.js"></script> <!-- Configure CookieInfo + Customise -->
+    <script>
+                $(document).ready(function () {
+
+
+                    if (jQuery(document).cookieInfo)
+                    {
+                        jQuery(document).cookieInfo({ defaultText: "We use cookies to improve your experience on our website. By browsing this website, you agree to our use of cookies.", okButton: "Accept",
+
+                    location: "bottom",
+                    makeSpace: false,
+                     speedIn: 500,
+                    speedOut: 400,
+                    delay: 1000,
+                float: true,
+                style: "dark",
+            cookieExpiry: 90,
+        cookieName: "CookieDirective",
+        function () {
+            }
+            });
+            } });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
