@@ -1,0 +1,13 @@
+{
+  "ConnectionStrings": {
+    "DBConnection": "Server=N1NWPLSK12SQL-v03.shr.prod.ams1.secureserver.net; Database=DigiteonDB; User Id=DigiteonUser; Password=Gl!9ae95"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
+}

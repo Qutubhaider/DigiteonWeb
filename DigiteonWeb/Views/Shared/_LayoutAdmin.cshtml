@@ -23,6 +23,7 @@
     <link href="~/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="~/admin/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    
     <style type="text/css">
         ._loading {
             position: fixed; /* Sit on top of the page content */
@@ -55,6 +56,13 @@
 
 <body data-sidebar="dark">
 
+    <div class="alert text-center cookiealert show" role="alert">
+        <b>Do you like cookies?</b>We use cookies to ensure you get the best experience on our website. <a href="https://cookiesandyou.com/" target="_blank">Learn more</a>
+
+        <button type="button" class="btn btn-primary btn-sm acceptcookies">
+            I agree
+        </button>
+    </div>
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
     <!-- Begin page -->
     <div id="layout-wrapper">
@@ -65,7 +73,7 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box text-center">
-                       <img src="~/assets/images/logo-1.png" />
+                        <img src="~/assets/images/logo-1.png" />
                     </div>
 
                     <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">

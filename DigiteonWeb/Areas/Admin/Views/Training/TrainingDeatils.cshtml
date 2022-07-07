@@ -46,13 +46,13 @@
                             <input type="text" asp-for="stCourseName" class="form-control" placeholder="Course Name">
                             <span class="text-danger" asp-validation-for="stCourseName"></span>
                         </div>
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label class="form-label">Course Description</label>
                             <textarea asp-for="stDescription" class="form-control" placeholder="Course Description"></textarea>
                             <span class="text-danger" asp-validation-for="stDescription"></span>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Images</label>                            
+                            <label class="form-label">Images</label>
                             <input type="file" asp-for="File" class="filestyle" data-buttonname="btn-secondary" />
                         </div>
                         <div>
@@ -75,4 +75,19 @@
 </div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial.cshtml" />
+    <script type="text/javascript">var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+
+
+        document.getElementById('dtStartDate').value = today;
+        document.getElementById('dtEndDate').value = today;
+    </script>
 }
