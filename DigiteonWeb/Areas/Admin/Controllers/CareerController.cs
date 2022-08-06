@@ -21,6 +21,7 @@ namespace DigiteonWeb.Areas.Admin.Controllers
     {
         private readonly DatabaseContext moDatabaseContext;
         private readonly IWebHostEnvironment _env;
+
         private readonly static int miPageSize = 10;
 
         public CareerController(DatabaseContext foDatabaseContext, IWebHostEnvironment env)
@@ -91,6 +92,21 @@ namespace DigiteonWeb.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Error");
             }
         }
+
+
+        public IActionResult DeleteCareer(Guid id)
+        {
+            SqlParameter loSuccess = new SqlParameter("@inSuccess", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC deleteCareer @unCareerId={id},@inSuccess={loSuccess} OUT");
+            if(Convert.ToInt32(loSuccess.Value)==103)
+            {
+                TempData["ResultCode"] = CommonFunctions.ActionResponse.Delete;
+                TempData["Message"] = string.Format(AlertMessage.DeleteData);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error");
+        }
+
         [HttpPost]
         public async Task<IActionResult> SaveCareer(Career career)
         {
@@ -257,8 +273,10 @@ namespace DigiteonWeb.Areas.Admin.Controllers
 
         }
 
-
-
+        public IActionResult DownloadFile(string filename)
+        {
+            return File(System.IO.File.ReadAllBytes(Path.Combine(_env.WebRootPath, "Files/Career", filename)), "application/octet-stream", filename);
+        }
     }
 }
 

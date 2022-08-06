@@ -34,12 +34,12 @@
                         <div class="mb-3">
                             <label class="form-label">Job Code</label>
                             <input type="text" asp-for="stJobCode" class="form-control" placeholder="Job Code">
-                            <span class="text-danger" asp-validation-for="stJobCode"></span>
+                            @*<span class="text-danger" asp-validation-for="stJobCode"></span>*@
                         </div>
                           <div class="mb-3">
                             <label class="form-label">Job Type</label>
                             <input type="text" asp-for="stJobType" class="form-control" placeholder="Job Type">
-                            <span class="text-danger" asp-validation-for="stJobType"></span>
+                           @* <span class="text-danger" asp-validation-for="stJobType"></span>*@
                         </div>
                            <div class="mb-3">
                             <label class="form-label">Job Description</label>
@@ -49,22 +49,22 @@
                         <div class="mb-3">
                             <label class="form-label">Job Responsiblities</label>
                             <textarea asp-for="stJobResponsiblities" class="form-control" placeholder="Job Responsiblities"></textarea>
-                            <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>
+                           @* <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>*@
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Job Required Skills</label>
                             <textarea asp-for="stJobSkills" class="form-control" placeholder="Job Required Skills"></textarea>
-                            <span class="text-danger" asp-validation-for="stJobSkills"></span>
+                           @* <span class="text-danger" asp-validation-for="stJobSkills"></span>*@
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Job Offer</label>
                             <textarea asp-for="stOfferDescription" class="form-control" placeholder="Job Offer"></textarea>
-                            <span class="text-danger" asp-validation-for="stOfferDescription"></span>
+                           @* <span class="text-danger" asp-validation-for="stOfferDescription"></span>*@
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Job Advantages</label>
                             <textarea asp-for="stJobAdvantages" class="form-control" placeholder="Job Advantages"></textarea>
-                            <span class="text-danger" asp-validation-for="stJobAdvantages"></span>
+                            @*<span class="text-danger" asp-validation-for="stJobAdvantages"></span>*@
                         </div>
                          <div class="mb-3" style="display:none;">
                             <label class="form-label">CV</label>
@@ -74,17 +74,17 @@
                          <div class="mb-3">
                             <label class="form-label">Salary</label>
                             <input type="text" asp-for="stSalary" class="form-control" placeholder="Salary">
-                            <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>
+                           @* <span class="text-danger" asp-validation-for="stJobResponsiblities"></span>*@
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Salary Type</label>
                             <input type="text" asp-for="stSalaryType" class="form-control" placeholder="Salary type">
-                            <span class="text-danger" asp-validation-for="stSalaryType"></span>
+                         @*   <span class="text-danger" asp-validation-for="stSalaryType"></span>*@
                         </div>
                          <div class="mb-3">
                             <label class="form-label">Job Duration</label>
                             <input type="text" asp-for="stJobDuration" class="form-control" placeholder="Job Duration">
-                            <span class="text-danger" asp-validation-for="stJobDuration"></span>
+                            @*<span class="text-danger" asp-validation-for="stJobDuration"></span>*@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Job Start Date</label>
@@ -96,7 +96,7 @@
                                 <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
                                     Submit
                                 </button>
-                                <a class="btn btn-secondary waves-effect" asp-area="Admin" asp-controller="Department" asp-action="Index">
+                                <a class="btn btn-secondary waves-effect" asp-area="Admin" asp-controller="Career" asp-action="Index">
                                     Cancel
                                 </a>
                             </div>

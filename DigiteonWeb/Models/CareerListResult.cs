@@ -13,6 +13,6 @@ namespace DigiteonWeb.Models
         public string stJobCode { get; set; }
         public string stJobType { get; set; }
         public string stSalary { get; set; }
-        public DateTime dtStartDate { get; set; }
+        public DateTime? dtStartDate { get; set; }
     }
 }

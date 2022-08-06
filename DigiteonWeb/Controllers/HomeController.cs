@@ -16,6 +16,8 @@ using System.Diagnostics;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using static DigiteonWeb.Common.CommonFunctions;
@@ -255,7 +257,7 @@ namespace DigiteonWeb.Controllers
         }
 
         [Route("training-calendar/{cname}/{id}")]
-        public IActionResult Enroll(Guid id,string cname)
+        public IActionResult Enroll(Guid id, string cname)
         {
             try
             {
@@ -271,7 +273,7 @@ namespace DigiteonWeb.Controllers
             {
                 return null;
             }
-           
+
         }
 
         [Route("thank-you")]
@@ -342,13 +344,13 @@ namespace DigiteonWeb.Controllers
         }
 
         [Route("careers/apply-now/{jname}/{id}")]
-        public IActionResult ApplyNow(Guid id,string jname)
+        public IActionResult ApplyNow(Guid id, string jname)
         {
             try
             {
                 CareerApplication application = new CareerApplication();
                 application.unCareerId = id;
-                application.stJobName= jname;
+                application.stJobName = jname;
                 return View("~/Views/Home/ApplicationDetail.cshtml", application);
             }
             catch (Exception ex)
@@ -383,9 +385,27 @@ namespace DigiteonWeb.Controllers
                     int fiSuccess = Convert.ToInt32(loSuccess.Value);
                     if (fiSuccess == 101)
                     {
-                        TempData["ResultCode"] = CommonFunctions.ActionResponse.Add;
-                        TempData["Message"] = string.Format(AlertMessage.SaveData);
-                        return RedirectToAction("Index");
+                        //MailAddress from = new MailAddress("info@digiteon.se", "Info");
+                        //MailAddress to = new MailAddress("info@digiteon.se", "Info");
+                        //MailMessage message = new MailMessage(from, to);
+                        //message.Subject = "Apply Now ";
+                        //message.Body = "<table><tr><td>Application Name : </td><td>" + application.stName + "</td></tr>" +
+                        //    "<tr><td>Email : </td><td>" + application.stEmail + "</td></tr> " +
+                        //    "<tr><td>Message : </td><td>" + application.stMessage + "</td></tr>" +
+                        //    "</table>";
+                        //message.IsBodyHtml = true;
+
+                        //System.Net.NetworkCredential mailAuthentication = new System.Net.NetworkCredential("info@digiteon.se", "Ranchi@12345");
+
+                        //System.Net.Mail.SmtpClient mailClient = new System.Net.Mail.SmtpClient("smtp.zoho.com", 587);
+                        //mailClient.EnableSsl = true;
+                        //mailClient.UseDefaultCredentials = false;
+                        //mailClient.Credentials = mailAuthentication;
+
+                        //message.IsBodyHtml = true;
+                        //mailClient.Send(message);
+
+                        return RedirectToAction("ThankYou");
                     }
                     else if (fiSuccess == 102)
                     {

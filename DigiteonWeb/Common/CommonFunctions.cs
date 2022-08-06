@@ -16,6 +16,7 @@ namespace DigiteonWeb.Common
         #region SaveAlert
 
         public const string SaveData = "Saved successfully.";
+        public const string DeleteData = "Deleted successfully.";
 
         #endregion
         #region Login

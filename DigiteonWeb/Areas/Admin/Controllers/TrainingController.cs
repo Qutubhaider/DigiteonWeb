@@ -53,6 +53,20 @@ namespace DigiteonWeb.Areas.Admin.Controllers
             return View("~/Areas/Admin/Views/Training/TrainingDeatils.cshtml");
         }
 
+
+        public IActionResult DeleteTraining(Guid id)
+        {
+            SqlParameter loSuccess = new SqlParameter("@inSuccess", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC deleteTraining @unTrainingId={id},@inSuccess={loSuccess} OUT");
+            if (Convert.ToInt32(loSuccess.Value) == 103)
+            {
+                TempData["ResultCode"] = CommonFunctions.ActionResponse.Delete;
+                TempData["Message"] = string.Format(AlertMessage.DeleteData);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error");
+        }
+
         public IActionResult EnquiryList(Guid id)
         {
             return View("~/Areas/Admin/Views/Training/EnquiryList.cshtml", id);
