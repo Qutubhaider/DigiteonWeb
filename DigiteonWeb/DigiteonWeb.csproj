@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
-    <StartupObject>DigiteonWeb.Program</StartupObject>
+    <StartupObject>PolarCastleWeb.Program</StartupObject>
   </PropertyGroup>
 
 	<PropertyGroup>

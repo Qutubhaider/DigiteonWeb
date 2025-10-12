@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace DigiteonWeb.Common
+namespace PolarCastleWeb.Common
 {
     public static class AlertMessage
     {

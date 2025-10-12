@@ -1,6 +1,6 @@
-﻿using DigiteonWeb.Common;
-using DigiteonWeb.Data;
-using DigiteonWeb.Models;
+﻿using PolarCastleWeb.Common;
+using PolarCastleWeb.Data;
+using PolarCastleWeb.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -20,9 +20,9 @@ using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using static DigiteonWeb.Common.CommonFunctions;
+using static PolarCastleWeb.Common.CommonFunctions;
 
-namespace DigiteonWeb.Controllers
+namespace PolarCastleWeb.Controllers
 {
     public class HomeController : Controller
     {
@@ -286,7 +286,7 @@ namespace DigiteonWeb.Controllers
             try
             {
                 SqlParameter loSuccess = new SqlParameter("@inSuccess", SqlDbType.Int) { Direction = ParameterDirection.Output };
-                moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC saveEnroll @unTrainingId={foEnrollDetails.unTrainingId}, @stFirstName={foEnrollDetails.stFirstName}, @stLastName={foEnrollDetails.stLastName}, @stEmail={foEnrollDetails.stEmail}, @stMobile={foEnrollDetails.stMobile}, @stAboutDigiteon={foEnrollDetails.stAboutDigiteon}, @stAboutThis={foEnrollDetails.stAboutThis}, @inSuccess={loSuccess} OUT");
+                moDatabaseContext.Database.ExecuteSqlInterpolated($"EXEC saveEnroll @unTrainingId={foEnrollDetails.unTrainingId}, @stFirstName={foEnrollDetails.stFirstName}, @stLastName={foEnrollDetails.stLastName}, @stEmail={foEnrollDetails.stEmail}, @stMobile={foEnrollDetails.stMobile}, @stAboutPolarCastle={foEnrollDetails.stAboutPolarCastle}, @stAboutThis={foEnrollDetails.stAboutThis}, @inSuccess={loSuccess} OUT");
                 int fiSuccess = Convert.ToInt32(loSuccess.Value);
                 if (fiSuccess == 101)
                 {
@@ -385,8 +385,8 @@ namespace DigiteonWeb.Controllers
                     int fiSuccess = Convert.ToInt32(loSuccess.Value);
                     if (fiSuccess == 101)
                     {
-                        //MailAddress from = new MailAddress("info@digiteon.se", "Info");
-                        //MailAddress to = new MailAddress("info@digiteon.se", "Info");
+                        //MailAddress from = new MailAddress("info@polarcastle.com", "Info");
+                        //MailAddress to = new MailAddress("info@polarcastle.com", "Info");
                         //MailMessage message = new MailMessage(from, to);
                         //message.Subject = "Apply Now ";
                         //message.Body = "<table><tr><td>Application Name : </td><td>" + application.stName + "</td></tr>" +
@@ -395,7 +395,7 @@ namespace DigiteonWeb.Controllers
                         //    "</table>";
                         //message.IsBodyHtml = true;
 
-                        //System.Net.NetworkCredential mailAuthentication = new System.Net.NetworkCredential("info@digiteon.se", "Ranchi@12345");
+                        //System.Net.NetworkCredential mailAuthentication = new System.Net.NetworkCredential("info@polarcastle.com", "Ranchi@12345");
 
                         //System.Net.Mail.SmtpClient mailClient = new System.Net.Mail.SmtpClient("smtp.zoho.com", 587);
                         //mailClient.EnableSsl = true;

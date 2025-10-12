@@ -1,6 +1,6 @@
-﻿using DigiteonWeb.Common;
-using DigiteonWeb.Data;
-using DigiteonWeb.Models;
+﻿using PolarCastleWeb.Common;
+using PolarCastleWeb.Data;
+using PolarCastleWeb.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DigiteonWeb.Areas.Admin.Controllers
+namespace PolarCastleWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class CareerController : Controller

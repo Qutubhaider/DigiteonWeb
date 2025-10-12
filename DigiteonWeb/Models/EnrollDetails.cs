@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DigiteonWeb.Models
+namespace PolarCastleWeb.Models
 {
     public class EnrollDetails
     {
@@ -29,7 +29,7 @@ namespace DigiteonWeb.Models
         [NotMapped]
         public string stAboutThis { get; set; }
         [NotMapped]
-        public string stAboutDigiteon { get; set; }
+        public string stAboutPolarCastle { get; set; }
 
         public int inTrainingId { get; set; }
         public DateTime dtStartDate { get; set; }

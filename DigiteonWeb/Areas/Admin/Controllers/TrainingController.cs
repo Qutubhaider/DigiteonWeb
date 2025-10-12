@@ -1,6 +1,6 @@
-﻿using DigiteonWeb.Common;
-using DigiteonWeb.Data;
-using DigiteonWeb.Models;
+﻿using PolarCastleWeb.Common;
+using PolarCastleWeb.Data;
+using PolarCastleWeb.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +14,7 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 
-namespace DigiteonWeb.Areas.Admin.Controllers
+namespace PolarCastleWeb.Areas.Admin.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [Area("Admin")]

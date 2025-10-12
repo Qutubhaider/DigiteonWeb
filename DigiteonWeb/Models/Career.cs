@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DigiteonWeb.Models
+namespace PolarCastleWeb.Models
 {
     public class Career
     {

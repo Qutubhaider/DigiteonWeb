@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DigiteonWeb.Models
+namespace PolarCastleWeb.Models
 {
     public class CareerListResult
     {

@@ -1,4 +1,4 @@
-﻿@model DigiteonWeb.Models.EnrollDetails;
+﻿@model PolarCastleWeb.Models.EnrollDetails;
 @{
     Layout = "_LayoutAllPage";
     ViewData["Title"] = Model.stCourseName;
@@ -151,7 +151,7 @@
                                     <select asp-for="stAboutThis" class="selectDrop">
                                         <option value="0" selected="">How did you hear about this training?</option>
                                         <option value="Internet search">Internet search</option>
-                                        <option value="Digiteon websites">Digiteon websites</option>
+                                        <option value="PolarCastle websites">PolarCastle websites</option>
                                         <option value="From a colleague or a friend">From a colleague or a friend</option>
                                         <option value="LinkedIn">LinkedIn</option>
                                         <option value="Facebook">Facebook</option>
@@ -163,7 +163,7 @@
                             </div>
                             <div class="col-xl-12">
                                 <div class="comment-form__input-box">
-                                    <textarea placeholder="Greeting to Digiteon" asp-for="stAboutDigiteon"></textarea>
+                                    <textarea placeholder="Greeting to PolarCastle" asp-for="stAboutPolarCastle"></textarea>
                                     <div class="comment-form__icon contact-expert__icon-comment">
                                         <i class="far fa-comment"></i>
                                     </div>
