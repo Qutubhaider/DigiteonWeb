@@ -49,6 +49,12 @@ namespace PolarCastleWeb.Controllers
             return View("~/Views/Home/About.cshtml");
         }
 
+        [Route("strategic-slliance-with-tyra")]
+        public IActionResult StrategicAllianceWithTyra()
+        {
+            return View("~/Views/Home/StrategicAllianceWithTyra.cshtml");
+        }
+
         public IActionResult Privacy()
         {
             return View("~/Views/Home/Privacy.cshtml");

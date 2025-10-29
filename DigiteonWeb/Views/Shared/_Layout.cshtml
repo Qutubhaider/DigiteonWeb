@@ -10,7 +10,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="~/assets/images/favicons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/favicons/favicon-16x16.png" />
     <link rel="manifest" href="~/assets/images/favicons/site.webmanifest" />
-    <meta name="description" content="PolarCastle is a Swedish IT services organisation run by Women entrepreneurs." />
+    <meta name="description" content=" PolarCastle is an Indian Edutech services organization run by focused and compassionate IT professional with
+                        over two decade of IT experience. Our key focus areas are Technology and Consulting Services in Education Sector
+                        in India." />
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -52,7 +54,7 @@
 </head>
 
 <body>
-   @* <div class="alert text-center cookiealert show" role="alert">
+    @* <div class="alert text-center cookiealert show" role="alert">
         We use cookies to improve your experience on our website. By browsing this website, you agree to our use of cookies.
         <button type="button" class="btn btn-primary btn-sm acceptcookies">
             Accept
@@ -80,10 +82,15 @@
                                 <li>
                                     <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                                 </li>
-                                <li>
-                                    <a asp-area="" asp-controller="Home" asp-action="About">About Us</a>
-                                </li>
                                 <li class="dropdown">
+                                    <a asp-area="" asp-controller="Home" asp-action="About">About Us</a>
+                                    <ul style="width: 334px">
+                                        <li>
+                                            <a asp-area="" asp-controller="Home" asp-action="StrategicAllianceWithTyra">Strategic Alliance With Tyra</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @*<li class="dropdown">
                                     <a asp-area="" asp-controller="Home" asp-action="Services">Services</a>
                                     <ul style="width: 334px">
                                         <li>
@@ -113,8 +120,8 @@
                                             <a asp-area="" asp-controller="Home" asp-action="ITdevelopment">Web development & maintenance</a>
                                         </li>
                                     </ul>
-                                </li>
-                               @*  <li class="dropdown">
+                                </li>*@
+                                @*  <li class="dropdown">
                                     <a asp-area="" asp-controller="Home" asp-action="TrainingCalendar">Training Calendar</a>
                                 </li>
 
@@ -138,7 +145,7 @@
                         </div>
                         <div class="main-menu-wrapper__phone-contact">
                             <p>Need help? Talk to an expert</p>
-                            <a href="tel:+46-727602626">+46-727602626</a>
+                            <a href="tel:+91-9589589159">+91-9589589159</a>
                         </div>
                     </div>
                 </div>
@@ -154,92 +161,91 @@
             <div class="site-footer-shape wow slideInRight" data-wow-delay="100ms" data-wow-duration="3500ms"
                  style="background-image: url(~/assets/images/shapes/footer-shape.png)"></div>
             <div class="container">
-                <div class="site-footer__top">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
-                            <div class="footer-widget__column footer-widget__about">
-                                <div class="footer-widget__about-logo">
-                                    <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/assets/images/footer-logo.png" style="width: 170px;" alt=""></a>
-                                </div>
-                                <p class="footer-widget__text">
-                                    Welcome to PolarCastle.
-                                </p>
-                                <ul class="list-unstyled footer-widget__contact-list">
-                                    <li>
-                                        <div class="icon">
-                                            <i class="fas fa-phone-square-alt"></i>
-                                        </div>
-                                        <div class="text">
-                                            <p><a href="tel:+46-727602626">+46-727602626</a></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <i class="fas fa-envelope"></i>
-                                        </div>
-                                        <div class="text">
-                                            <p><a href="mailto:info@polarcastle.com">info@polarcastle.com</a></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="icon">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </div>
-                                        <div class="text">
-                                            <p>
-                                                <b>PolarCastle</b>
-                                                Fagelvagen 12
-                                                135 53 Tyreso
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
-                            <div class="footer-widget__column footer-widget__explore clearfix">
-                                <h3 class="footer-widget__title">Explore</h3>
-                                <ul class="footer-widget__explore-list list-unstyled">
-                                    <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Services">Services</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="TrainingCalendar">Training Calendar</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Termsofuse">Terms of use</a></li>
-                                    @* <li><a href="/#help">Help</a></li>*@
-                                </ul>
-                                <ul class="footer-widget__explore-list footer-widget__explore-list-two list-unstyled">
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Careers">Careers</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Privacypolicy">Privacy policy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-5 col-lg-6 col-md-8 wow fadeInUp" data-wow-delay="400ms">
-                            <div class="footer-widget__column footer-widget__newsletter">
-                                <h3 class="footer-widget__title footer-widget__title-news">Newsletter</h3>
-                                <form class="footer-widget__newsletter-form">
-                                    <p class="footer-widget__newsletter-text">
-                                        Subsrcibe for latest jobs and
-                                        training
-                                    </p>
-                                    <div class="footer-widget__newsletter-input-box">
-                                        <input type="email" placeholder="Email address" name="email">
-                                        <button type="submit" class="footer-widget__newsletter-btn">Register</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- <div class="site-footer__top">
+                      <div class="row">
+                          <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                              <div class="footer-widget__column footer-widget__about">
+                                  <div class="footer-widget__about-logo">
+                                      <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/assets/images/footer-logo.png" style="width: 170px;" alt=""></a>
+                                  </div>
+                                  <p class="footer-widget__text">
+                                      Welcome to PolarCastle.
+                                  </p>
+                                  <ul class="list-unstyled footer-widget__contact-list">
+                                      <li>
+                                          <div class="icon">
+                                              <i class="fas fa-phone-square-alt"></i>
+                                          </div>
+                                          <div class="text">
+                                              <p><a href="tel:+91-9589589159">+91-9589589159</a></p>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="icon">
+                                              <i class="fas fa-envelope"></i>
+                                          </div>
+                                          <div class="text">
+                                              <p><a href="mailto:info@polarcastle.com">info@polarcastle.com</a></p>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="icon">
+                                              <i class="fas fa-map-marker-alt"></i>
+                                          </div>
+                                          <div class="text">
+                                              <p>
+                                                  <b>PolarCastle</b>
+                                                  Choubey Colony, Raipur, India
+                                              </p>
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                              <div class="footer-widget__column footer-widget__explore clearfix">
+                                  <h3 class="footer-widget__title">Explore</h3>
+                                  <ul class="footer-widget__explore-list list-unstyled">
+                                      <li><a asp-area="" asp-controller="Home" asp-action="About">About Us</a></li>
+                                      <li><a asp-area="" asp-controller="Home" asp-action="Services">Services</a></li>
+                                      <li><a asp-area="" asp-controller="Home" asp-action="TrainingCalendar">Training Calendar</a></li>
+                                      <li><a asp-area="" asp-controller="Home" asp-action="Termsofuse">Terms of use</a></li>
+                                      @* <li><a href="/#help">Help</a></li>*@
+                                  </ul>
+                                  <ul class="footer-widget__explore-list footer-widget__explore-list-two list-unstyled">
+                                      <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+                                      <li><a asp-area="" asp-controller="Home" asp-action="Careers">Careers</a></li>
+                                      <li><a asp-area="" asp-controller="Home" asp-action="Privacypolicy">Privacy policy</a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="col-xl-5 col-lg-6 col-md-8 wow fadeInUp" data-wow-delay="400ms">
+                              <div class="footer-widget__column footer-widget__newsletter">
+                                  <h3 class="footer-widget__title footer-widget__title-news">Newsletter</h3>
+                                  <form class="footer-widget__newsletter-form">
+                                      <p class="footer-widget__newsletter-text">
+                                          Subsrcibe for latest jobs and
+                                          training
+                                      </p>
+                                      <div class="footer-widget__newsletter-input-box">
+                                          <input type="email" placeholder="Email address" name="email">
+                                          <button type="submit" class="footer-widget__newsletter-btn">Register</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>-->
                 <div class="site-footer-bottom">
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="site-footer-bottom__inner">
                                 <div class="site-footer-bottom__left">
-                                    <p>© Copyright 2022 by <a href="#">polarcastle.com</a></p>
+                                    <p>© Copyright 2025 by <a href="#">Polarcastle EdTech</a></p>
                                 </div>
                                 <div class="site-footer__social">
-                                    <a style="color: white; font-size: 30px;" target="_blank" href="https://www.facebook.com/PolarCastle-AB-110813568233624" class="fab fa-facebook-square"></a>
-                                    <a style="color: white; font-size: 30px;" target="_blank" href="https://www.linkedin.com/company/PolarCastle-ab/" class="fab fa-linkedin"></a>
+                                    @* <a style="color: white; font-size: 30px;" target="_blank" href="https://www.facebook.com/PolarCastle-AB-110813568233624" class="fab fa-facebook-square"></a> *@
+                                    @* <a style="color: white; font-size: 30px;" target="_blank" href="https://www.linkedin.com/company/PolarCastle-ab/" class="fab fa-linkedin"></a> *@
                                     <a style="color: white; font-size: 30px;" target="_blank" href="https://api.whatsapp.com/send?phone=+46-727602626&amp;text=Hi" class="fab fa-whatsapp-square"></a>
                                 </div>
                             </div>
@@ -277,7 +283,7 @@
                 </li>
                 <li>
                     <i class="fa fa-phone-alt"></i>
-                    <a href="tel:+46-727602626">+46-727602626</a>
+                    <a href="tel:+91-9589589159">+91-9589589159</a>
                 </li>
             </ul><!-- /.mobile-nav__contact -->
             <div class="mobile-nav__top">
@@ -350,7 +356,7 @@
     <script src="../../translate.google.com/translate_a/elementa0d8.js?cb=googleTranslateElementInit"></script>
     <script src="~/assets/js/color-switcher.js"></script>
     <script src="~/js/cookiealert.js" type="text/javascript"></script>
-     <link rel="stylesheet" type="text/css" href="~/css/default.css">
+    <link rel="stylesheet" type="text/css" href="~/css/default.css">
     <script type="text/javascript" src="~/css/CookieInfo.min.js"></script> <!-- Configure CookieInfo + Customise -->
     <script>
                 $(document).ready(function () {
