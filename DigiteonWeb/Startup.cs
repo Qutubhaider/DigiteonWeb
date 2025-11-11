@@ -1,4 +1,4 @@
-using PolarCastleWeb.Data;
+using DigiteonWeb.Common;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PolarCastleWeb.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,9 @@ namespace PolarCastleWeb
                 options.UseSqlServer(Configuration.GetConnectionString("DBConnection"))
             );
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.Configure<ZohoMailOptions>(Configuration.GetSection("ZohoMail"));
+            services.AddScoped<IEmailService, ZohoEmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

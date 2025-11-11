@@ -6,6 +6,63 @@
     .thm-btn {
         margin:10px !important;
     }
+
+    .counters-one {
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+    }
+
+    .counters-one-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: .12;
+    }
+
+    .counters-one .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .counters-one__box {
+        display: grid;
+        gap: 28px;
+        padding: 40px 0;
+        grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    }
+
+    .counter-one__single {
+        background: rgba(255,255,255,.08);
+        border-radius: 16px;
+        text-align: center;
+        padding: 25px 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.1);
+        transition: .3s;
+    }
+
+        .counter-one__single:hover {
+            background: rgba(255,255,255,.15);
+        }
+
+    .counter-one__icon {
+        font-size: 32px;
+        color: #ffdd57;
+        margin-bottom: 10px;
+    }
+
+    .odometer {
+        font-size: 36px;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .counter-one__text {
+        margin: 5px 0 0;
+        font-size: 15px;
+        opacity: .9;
+    }
 </style>
 <section class="main-slider">
     <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
@@ -176,476 +233,9 @@
     </div>
 </section>
 <!--Welcome One End-->
-<!--Two Boxes Start-->
-<section class="two-boxes d-none">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-6 col-lg-6">
-                <div class="two-boxes__single">
-                    <div class="two-boxes__single-content">
-                        <div class="two-boxes__count">
-                            <span></span>
-                        </div>
-                        <div class="two-boxes__content">
-                            <h3 class="two-boxes__title">Get professional advice</h3>
-                            <p class="two-boxes__text">
-                                There are many variations of available but the majority
-                                have suffered alteration.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 col-lg-6">
-                <div class="two-boxes__single">
-                    <div class="two-boxes__single-content">
-                        <div class="two-boxes__count">
-                            <span></span>
-                        </div>
-                        <div class="two-boxes__content">
-                            <h3 class="two-boxes__title">trusted & professional</h3>
-                            <p class="two-boxes__text">
-                                There are many variations of available but the majority
-                                have suffered alteration.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--Two Boxes End-->
-<!--Cases One Start-->
-<section class="cases-one d-none">
-    <div class="container">
-        <div class="section-title text-center">
-            <h2 class="section-title__title">new case studies</h2>
-            <span class="section-title__tagline">We help our clients renew their business</span>
-        </div>
-        <div class="row">
-            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                <!--Cases One Single-->
-                <div class="cases-one__single">
-                    <div class="cases-one__img-box">
-                        <div class="cases-one__img">
-                            <img src="assets/images/resources/cases-1-img-1.jpg" alt="">
-                        </div>
-                        <div class="cases-one__content">
-                            <div class="cases-one__icon">
-                                <span class="icon-mobile-analytics"></span>
-                            </div>
-                            <p class="cases-one__tagline">Thought leadership</p>
-                            <h2 class="cases-one__tilte"><a href="cases-details.html">businesses growth</a></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                <!--Cases One Single-->
-                <div class="cases-one__single">
-                    <div class="cases-one__img-box">
-                        <div class="cases-one__img">
-                            <img src="assets/images/resources/cases-1-img-2.jpg" alt="">
-                        </div>
-                        <div class="cases-one__content">
-                            <div class="cases-one__icon">
-                                <span class="icon-research"></span>
-                            </div>
-                            <p class="cases-one__tagline">Risk management</p>
-                            <h2 class="cases-one__tilte"><a href="cases-details.html">Marketing advice</a></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-                <!--Cases One Single-->
-                <div class="cases-one__single">
-                    <div class="cases-one__img-box">
-                        <div class="cases-one__img">
-                            <img src="assets/images/resources/cases-1-img-3.jpg" alt="">
-                        </div>
-                        <div class="cases-one__content">
-                            <div class="cases-one__icon">
-                                <span class="icon-creative"></span>
-                            </div>
-                            <p class="cases-one__tagline">Business strategy</p>
-                            <h2 class="cases-one__tilte">
-                                <a href="cases-details.html">finance consulting</a>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--Cases One End-->
-<!--Our Mission Start-->
-<section class="our-mission d-none">
-    <div class="our-mission-bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-         style="background-image: url(assets/images/backgrounds/our-mission-bg.jpg)"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="our-mission__inner">
-                    <h2 class="our-mission__title">
-                        Mission is to Grow <br> your Business & <br> Much More
-                    </h2>
-                    <a asp-area="" asp-controller="Home" asp-action="Contact" class="thm-btn our-mission__btn">Discover More</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--Our Mission End-->
-<!--Faq One Start-->
-<section class="faq-one d-none" id="help">
-    <div class="container">
-        <div class="section-title text-center">
-            <h2 class="section-title__title">Question Answers</h2>
-        </div>
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="faq-one__left">
-                    <div class="accrodion-grp" data-grp-name="faq-one-accrodion">
-                        <div class="accrodion active">
-                            <div class="accrodion-title">
-                                <h4><span>.</span>Clients with Skill needs</h4>
-                            </div>
-                            <div class="accrodion-content">
-                                <div class="inner">
-                                    <p>
-                                        We ensure the highest quality candidates are placed within defined timelines & budgets using a consultative approach.
-                                        <br />
-                                        When you work with us you will get:
-                                        <ul class="list-unstyled faq-one__list">
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">Access to premium profiles screened specifically to suit your requirements.</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">Local market expertise.</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">Consultative approach.</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">Smooth On-boarding guided by industry best practice.</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </p>
-                                </div><!-- /.inner -->
-                            </div>
-                        </div>
-                        <div class="accrodion">
-                            <div class="accrodion-title">
-                                <h4><span>.</span>Candidates looking for Jobs</h4>
-                            </div>
-                            <div class="accrodion-content">
-                                <div class="inner">
-                                    <p>
-                                        We collaborate closely with you to find the right match and help you to plan your next career move securing the right assignment which is not just financially rewarding but also matches your career aspirations.
-                                        <br />
-                                        When you work with us you will get:
-                                        <ul class="list-unstyled faq-one__list">
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">Access to premium clients.</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">Interview & Resume Coaching.</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">Local market expertise.</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">Transparent & Proactive Communication.</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </p>
-                                </div><!-- /.inner -->
-                            </div>
-                        </div>
-                        <!--<div class="accrodion">
-                            <div class="accrodion-title">
-                                <h4><span>.</span> what is the best advice for growth?</h4>
-                            </div>
-                            <div class="accrodion-content">
-                                <div class="inner">
-                                    <p>
-                                        There are many variations of passages the majority have suffered
-                                        alteration in some fo injected humour, or randomised words believable.
-                                    </p>
-                                </div>-->
-                        <!-- /.inner -->
-                        <!--</div>
-                        </div>-->
-                        <div class="accrodion">
-                            <div class="accrodion-title">
-                                <h4><span>.</span> Training Needs Corporate & Individual</h4>
-                            </div>
-                            <div class="accrodion-content">
-                                <div class="inner">
-                                    <p>
-                                        We support our clients’ digital journeys by building crucial skills through our Training offerings helping them navigate complex transformations.
-                                        <br />
-                                        We cover a wide array of Skill development providing cutting edge Trainings in the field of Agile, Cloud, Security, Data etc.
-                                        <br />
-                                        When you work with us you will get:
-                                        <ul class="list-unstyled faq-one__list">
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">High Quality Trainers with Industry experience.</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">Cutting edge Training Infrastructure.</p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="icon">
-                                                    <span class="icon-tick"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p style="font-size:14px;">High Certification Passing rate.</p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </p>
-                                </div><!-- /.inner -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6">
-                <div class="faq-one__right">
-                    <div class="faq-one__img">
-                        <img src="assets/images/resources/faq-one-img-1.jpg" alt="">
-                    </div>
-                    <div class="faq-one__bottom">
-                        <div class="faq-one__list-box">
-                            <ul class="list-unstyled faq-one__list">
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-tick"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Access to premium profiles and clients</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-tick"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Local market expertise</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-tick"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Best in–class trainings</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-tick"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Experienced talent recruitment team</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-tick"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Seamless payroll processing services</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="faq-one__experience-box">
-                            <h2>20</h2>
-                            <p>Years of <br>Combined Experience</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--Faq One End-->
-<!--Testimonials One Start-->
-<section class="testimonials-one d-none">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-4">
-                <div class="testimonials-one__left">
-                    <div class="section-title text-left">
-                        <h2 class="section-title__title">What they are talking About</h2>
-                        <span class="section-title__tagline">Trusted by more than 4,200 customers</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-8">
-                <div class="testimonials-one__right">
-                    <div class="testimonials-one__carousel owl-theme owl-carousel">
-                        <!--Testimonials One Single-->
-                        <div class="testimonials-one__single">
-                            <p class="testimonials-one__text">
-                                Lorem ipsum is simply free text dolor sit amet,
-                                consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua.
-                            </p>
-                            <div class="testimonials-one__client-info">
-                                <h5 class="testimonials-one__client-name">Todd Higgins</h5>
-                                <p class="testimonials-one__client-title">Customer</p>
-                            </div>
-                            <div class="testimonials-one__client-img">
-                                <img src="assets/images/testimonial/testimonials-1-1.png" alt="">
-                            </div>
-                            <div class="testimonials-one__quote"></div>
-                        </div>
-                        <!--Testimonials One Single-->
-                        <div class="testimonials-one__single">
-                            <p class="testimonials-one__text">
-                                Lorem ipsum is simply free text dolor sit amet,
-                                consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua.
-                            </p>
-                            <div class="testimonials-one__client-info">
-                                <h5 class="testimonials-one__client-name">Gordon King</h5>
-                                <p class="testimonials-one__client-title">Customer</p>
-                            </div>
-                            <div class="testimonials-one__client-img">
-                                <img src="assets/images/testimonial/testimonials-1-2.png" alt="">
-                            </div>
-                            <div class="testimonials-one__quote"></div>
-                        </div>
-                        <!--Testimonials One Single-->
-                        <div class="testimonials-one__single">
-                            <p class="testimonials-one__text">
-                                Lorem ipsum is simply free text dolor sit amet,
-                                consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua.
-                            </p>
-                            <div class="testimonials-one__client-info">
-                                <h5 class="testimonials-one__client-name">Paul Alvarez</h5>
-                                <p class="testimonials-one__client-title">Customer</p>
-                            </div>
-                            <div class="testimonials-one__client-img">
-                                <img src="assets/images/testimonial/testimonials-1-1.png" alt="">
-                            </div>
-                            <div class="testimonials-one__quote"></div>
-                        </div>
-                        <!--Testimonials One Single-->
-                        <div class="testimonials-one__single">
-                            <p class="testimonials-one__text">
-                                Lorem ipsum is simply free text dolor sit amet,
-                                consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua.
-                            </p>
-                            <div class="testimonials-one__client-info">
-                                <h5 class="testimonials-one__client-name">Hester Ortiz</h5>
-                                <p class="testimonials-one__client-title">Customer</p>
-                            </div>
-                            <div class="testimonials-one__client-img">
-                                <img src="assets/images/testimonial/testimonials-1-2.png" alt="">
-                            </div>
-                            <div class="testimonials-one__quote"></div>
-                        </div>
-                        <!--Testimonials One Single-->
-                        <div class="testimonials-one__single">
-                            <p class="testimonials-one__text">
-                                Lorem ipsum is simply free text dolor sit amet,
-                                consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua.
-                            </p>
-                            <div class="testimonials-one__client-info">
-                                <h5 class="testimonials-one__client-name">Randall Fleming</h5>
-                                <p class="testimonials-one__client-title">Customer</p>
-                            </div>
-                            <div class="testimonials-one__client-img">
-                                <img src="assets/images/testimonial/testimonials-1-1.png" alt="">
-                            </div>
-                            <div class="testimonials-one__quote"></div>
-                        </div>
-                        <!--Testimonials One Single-->
-                        <div class="testimonials-one__single">
-                            <p class="testimonials-one__text">
-                                Lorem ipsum is simply free text dolor sit amet,
-                                consectetur notted adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua.
-                            </p>
-                            <div class="testimonials-one__client-info">
-                                <h5 class="testimonials-one__client-name">Benjamin Hansen</h5>
-                                <p class="testimonials-one__client-title">Customer</p>
-                            </div>
-                            <div class="testimonials-one__client-img">
-                                <img src="assets/images/testimonial/testimonials-1-2.png" alt="">
-                            </div>
-                            <div class="testimonials-one__quote"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--Testimonials One End-->
-<!--Counters One Start-->
-<section class="counters-one d-none">
-    <div class="counters-one-bg" style="background-image: url(assets/images/backgrounds/counter-one-bg.jpg)">
+
+@* <section class="counters-one counter-page" style="background-color:#284f9a;">
+    <div class="counters-one-bg" style="background-image: url(~/assets/images/backgrounds/counter-one-bg.jpg)">
     </div>
     <div class="container">
         <ul class="counters-one__box list-unstyled">
@@ -653,262 +243,78 @@
                 <div class="counter-one__icon">
                     <span class="fas fa-globe"></span>
                 </div>
-                <h3 class="odometer" data-count="4">00</h3>
-                <p class="counter-one__text">Countries Served</p>
+                <h3 class="odometer">2500+</h3>
+                <p class="counter-one__text">Global Schools</p>
                 <br />
             </li>
             <li class="counter-one__single">
                 <div class="counter-one__icon">
                     <span class="icon-customer-review"></span>
                 </div>
-                <h3 class="odometer" data-count="20+">00</h3>
-                <p class="counter-one__text">years of combined Industry experience</p>
+                <h3 class="odometer">250K+</h3>
+                <p class="counter-one__text">Parents Onboarded</p>
             </li>
             <li class="counter-one__single">
                 <div class="counter-one__icon">
                     <span class="fa fa-server"></span>
                 </div>
-                <h3 class="odometer" data-count="25+">00</h3>
-                <p class="counter-one__text">Technology Skills</p>
+                <h3 class="odometer">4</h3>
+                <p class="counter-one__text">Star Playstore ratings</p>
                 <br />
             </li>
             <li class="counter-one__single">
                 <div class="counter-one__icon">
                     <span class="fa fa-project-diagram"></span>
                 </div>
-                <h3 class="odometer" data-count="30+">00</h3>
+                <h3 class="odometer">20L+</h3>
                 <p class="counter-one__text">Training Programs</p>
                 <br />
             </li>
         </ul>
     </div>
-</section>
-<!--Counters One Start-->
-<!--Financial Advice Start-->
-<section class="financial-advice d-none">
+</section> *@
+
+<section class="counters-one counter-page">
+    <div class="counters-one-bg"
+         style="background-image:url('@Url.Content("~/assets/images/backgrounds/counter-one-bg.jpg")');">
+    </div>
+
     <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="financial-advice__box tabs-box">
-                    <ul class="tab-btns tab-buttons clearfix list-unstyled">
-                        <li data-tab="#business" class="tab-btn"><span>Business Growth</span></li>
-                        <li data-tab="#financial" class="tab-btn active-btn"><span>Financial Advice</span></li>
-                        <li data-tab="#gobal" class="tab-btn"><span>Gobal Solutions</span></li>
-                    </ul>
-                    <div class="tabs-content">
-                        <div class="tab " id="business">
-                            <div class="financial-advice__content">
-                                <div class="row">
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="financial-advice__single-1">
-                                            <ul class="list-unstyled financial-advice__list-box">
-                                                <li>
-                                                    <div class="financial-advice__icon">
-                                                        <span class="icon-checkmark"></span>
-                                                    </div>
-                                                    <div class="financial-advice__list-box-content">
-                                                        <h3 class="finalcial-advice__list-box-title">
-                                                            Highest
-                                                            Success Rates
-                                                        </h3>
-                                                        <p class="finalcial-advice__list-box-text">
-                                                            Lorem Ipsum
-                                                            nibh vel velit auctor aliqu. Aenean sollic tudin,
-                                                            lorem is simply free text quis bibendum.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="financial-advice__icon">
-                                                        <span class="icon-checkmark"></span>
-                                                    </div>
-                                                    <div class="financial-advice__list-box-content">
-                                                        <h3 class="finalcial-advice__list-box-title">
-                                                            We build
-                                                            experience
-                                                        </h3>
-                                                        <p class="finalcial-advice__list-box-text">
-                                                            Lorem Ipsum
-                                                            nibh vel velit auctor aliqu. Aenean sollic tudin,
-                                                            lorem is simply free text quis bibendum.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="financial-advice__single-1 financial-advice__single-2">
-                                            <p class="financial-advice_-desc">
-                                                There are many variations of
-                                                passages of lorem ipsum available, but the majority have
-                                                suffered alteration in some form injected humour or randomised
-                                                words which don't look believable.
-                                            </p>
-                                            <ul class="list-unstyled financial-advice__list-box-2">
-                                                <li>If you are going to use a passage</li>
-                                                <li>Lorem Ipsum you need to be sure</li>
-                                                <li>There isn't anything embarrassing</li>
-                                                <li> Hidden in the middle of text</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="financial-advice__single-1 financial-advice__single-3">
-                                            <div class="financial-advice__img">
-                                                <img src="assets/images/resources/financial-advice-img-1.jpg"
-                                                     alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <ul class="counters-one__box list-unstyled">
+            <!-- Global Schools -->
+            <li class="counter-one__single">
+                <div class="counter-one__icon"><span class="fas fa-globe" aria-hidden="true"></span></div>
+                <h3>2500+</h3>
+                <p class="counter-one__text">Global Schools</p>
+            </li>
 
-                        <div class="tab active-tab" id="financial">
-                            <div class="financial-advice__content">
-                                <div class="row">
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="financial-advice__single-1">
-                                            <ul class="list-unstyled financial-advice__list-box">
-                                                <li>
-                                                    <div class="financial-advice__icon">
-                                                        <span class="icon-checkmark"></span>
-                                                    </div>
-                                                    <div class="financial-advice__list-box-content">
-                                                        <h3 class="finalcial-advice__list-box-title">
-                                                            Highest
-                                                            Success Rates
-                                                        </h3>
-                                                        <p class="finalcial-advice__list-box-text">
-                                                            Lorem Ipsum
-                                                            nibh vel velit auctor aliqu. Aenean sollic tudin,
-                                                            lorem is simply free text quis bibendum.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="financial-advice__icon">
-                                                        <span class="icon-checkmark"></span>
-                                                    </div>
-                                                    <div class="financial-advice__list-box-content">
-                                                        <h3 class="finalcial-advice__list-box-title">
-                                                            We build
-                                                            experience
-                                                        </h3>
-                                                        <p class="finalcial-advice__list-box-text">
-                                                            Lorem Ipsum
-                                                            nibh vel velit auctor aliqu. Aenean sollic tudin,
-                                                            lorem is simply free text quis bibendum.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="financial-advice__single-1 financial-advice__single-2">
-                                            <p class="financial-advice_-desc">
-                                                There are many variations of
-                                                passages of lorem ipsum available, but the majority have
-                                                suffered alteration in some form injected humour or randomised
-                                                words which don't look believable.
-                                            </p>
-                                            <ul class="list-unstyled financial-advice__list-box-2">
-                                                <li>If you are going to use a passage</li>
-                                                <li>Lorem Ipsum you need to be sure</li>
-                                                <li>There isn't anything embarrassing</li>
-                                                <li> Hidden in the middle of text</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="financial-advice__single-1 financial-advice__single-3">
-                                            <div class="financial-advice__img">
-                                                <img src="assets/images/resources/financial-advice-img-1.jpg"
-                                                     alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Parents Onboarded -->
+            <li class="counter-one__single">
+                <div class="counter-one__icon"><span class="fa fa-server" aria-hidden="true"></span></div>
+                <h3>250K+</h3>
+                <p class="counter-one__text">Parents Onboarded</p>
+            </li>
 
-                        <div class="tab" id="gobal">
-                            <div class="financial-advice__content">
-                                <div class="row">
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="financial-advice__single-1">
-                                            <ul class="list-unstyled financial-advice__list-box">
-                                                <li>
-                                                    <div class="financial-advice__icon">
-                                                        <span class="icon-checkmark"></span>
-                                                    </div>
-                                                    <div class="financial-advice__list-box-content">
-                                                        <h3 class="finalcial-advice__list-box-title">
-                                                            Highest
-                                                            Success Rates
-                                                        </h3>
-                                                        <p class="finalcial-advice__list-box-text">
-                                                            Lorem Ipsum
-                                                            nibh vel velit auctor aliqu. Aenean sollic tudin,
-                                                            lorem is simply free text quis bibendum.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="financial-advice__icon">
-                                                        <span class="icon-checkmark"></span>
-                                                    </div>
-                                                    <div class="financial-advice__list-box-content">
-                                                        <h3 class="finalcial-advice__list-box-title">
-                                                            We build
-                                                            experience
-                                                        </h3>
-                                                        <p class="finalcial-advice__list-box-text">
-                                                            Lorem Ipsum
-                                                            nibh vel velit auctor aliqu. Aenean sollic tudin,
-                                                            lorem is simply free text quis bibendum.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="financial-advice__single-1 financial-advice__single-2">
-                                            <p class="financial-advice_-desc">
-                                                There are many variations of
-                                                passages of lorem ipsum available, but the majority have
-                                                suffered alteration in some form injected humour or randomised
-                                                words which don't look believable.
-                                            </p>
-                                            <ul class="list-unstyled financial-advice__list-box-2">
-                                                <li>If you are going to use a passage</li>
-                                                <li>Lorem Ipsum you need to be sure</li>
-                                                <li>There isn't anything embarrassing</li>
-                                                <li> Hidden in the middle of text</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="financial-advice__single-1 financial-advice__single-3">
-                                            <div class="financial-advice__img">
-                                                <img src="assets/images/resources/financial-advice-img-1.jpg"
-                                                     alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <!-- Play Store ratings -->
+            <li class="counter-one__single">
+                <div class="counter-one__icon"><span class="icon-customer-review" aria-hidden="true"></span></div>                
+                <h3>4</h3>
+                <p class="counter-one__text">Star Play Store Ratings</p>
+            </li>
+
+            <!-- Messaging per month -->
+            <li class="counter-one__single">
+                <div class="counter-one__icon"><span class="fa fa-project-diagram" aria-hidden="true"></span></div>
+                <h3>4+</h3>
+                <p class="counter-one__text">Countries</p>
+            </li>
+        </ul>
     </div>
 </section>
-<!--Financial Advice End-->
+
+
+    
+        
 <!--Google Map Start-->
 <section class="google-map">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7437.266647329539!2d81.60794939113298!3d21.24638412147068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dde8bc3f040d%3A0xc3c32071973008be!2sChoubey%20Colony%2C%20Raipur%2C%20Chhattisgarh!5e0!3m2!1sen!2sin!4v1761295541113!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -1038,3 +444,43 @@
     </div>
 </section>
 <!--CTA One End-->
+
+<script>
+      (function () {
+      // Indian numbering format: 1K = thousand, 1L = lakh (100K), 1Cr = crore (10M)
+      function formatNumber(n) {
+        if (n >= 10000000) return (n / 10000000).toFixed(1).replace(/\.0$/, '') + 'Cr';
+        if (n >= 100000)  return (n / 100000).toFixed(1).replace(/\.0$/, '') + 'L';
+        if (n >= 1000)    return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+        return n;
+      }
+
+      function animateCounter(el) {
+        const target = parseInt(el.dataset.target || '0', 10);
+        const duration = 1200;
+        const startTime = performance.now();
+        const suffix = el.dataset.suffix || '';
+
+        function tick(now) {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(target * ease);
+          el.textContent = formatNumber(current) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      const counters = document.querySelectorAll('.odometer');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.dataset.done) {
+            entry.target.dataset.done = '1';
+            animateCounter(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      counters.forEach(c => observer.observe(c));
+    })();
+</script>
