@@ -45,6 +45,7 @@ namespace PolarCastleWeb
 
             services.Configure<ZohoMailOptions>(Configuration.GetSection("ZohoMail"));
             services.AddScoped<IEmailService, ZohoEmailService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

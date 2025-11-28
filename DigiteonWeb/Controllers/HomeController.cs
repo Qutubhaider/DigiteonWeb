@@ -28,14 +28,16 @@ namespace PolarCastleWeb.Controllers
     {
         private readonly DatabaseContext moDatabaseContext;
         private readonly IWebHostEnvironment _env;
+        private readonly IEmailService _emailService;
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, DatabaseContext foDatabaseContext, IWebHostEnvironment env)
+        public HomeController(ILogger<HomeController> logger, DatabaseContext foDatabaseContext, IWebHostEnvironment env, IEmailService emailService)
         {
             _logger = logger;
             moDatabaseContext = foDatabaseContext;
             _env = env;
+            _emailService = emailService;
         }
 
         public IActionResult Index()
@@ -436,5 +438,37 @@ namespace PolarCastleWeb.Controllers
             }
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SendMail(string name, string email, string message, string phoneno)
+        {
+            try
+            {
+                var subject = $"New message from {name}";
+                var htmlBody = $@"
+                                <h3>New Message from Website</h3>
+                                <p><strong>Name:</strong> {name}</p>
+                                <p><strong>Email:</strong> {email}</p>
+                                <p><strong>Mobile:</strong> {phoneno}</p>
+                                <p><strong>Message:</strong></p>
+                                <p>{message}</p>";
+
+                await _emailService.SendAsync("info@polarcastle.com", subject, htmlBody, replyTo: email);
+
+                return Ok(new { success = true, message = "Mail sent successfully!" });
+            }
+            catch (Exception ex)
+            {
+                // Yahan detailed info bhej sakte ho
+                return StatusCode(500, new
+                {
+                    success = false,
+                    message = "Mail sending failed.",
+                    error = ex.Message,
+                    detail = ex.ToString()
+                });
+            }
+        }
+
     }
 }
