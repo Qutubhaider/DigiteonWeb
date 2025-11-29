@@ -148,40 +148,42 @@
 </section>
 
 <script type="text/javascript">
-       <script>
-    document.querySelector('.comment-one__form').addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const form = e.target;
-        const data = new FormData(form);
-
-        try {
-            const res = await fetch(form.action, {
-                method: 'POST',
-                headers: {
-                    'RequestVerificationToken': form.querySelector('input[name="__RequestVerificationToken"]').value
-                },
-                body: data
-            });
-
-            const result = await res.json(); 
-
-            if (result.success) {
-                alert(result.message || 'Thanks! We’ll get back to you shortly.');
-                form.reset();
-            } else {
-                // Yahan exception ka message show kara sakte ho
-                alert(result.error || result.message || 'There was an error. Please try again.');
-
-                // Console me full detail for debugging
-                console.error(result.detail || result);
-            }
-        } catch (err) {
-            // Agar fetch hi fail ho jaye
-            alert('Request failed. Please try again later.');
-            console.error(err);
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('.comment-one__form');
+        if (!form) {
+            console.error('Form not found: .comment-one__form');
+            return;
         }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const data = new FormData(form);
+
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': form.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                    body: data
+                });
+
+                const result = await res.json();
+                console.log('Response JSON:', result);
+
+                if (result.success) {
+                    alert(result.message || 'Thanks! We’ll get back to you shortly.');
+                    form.reset();
+                } else {
+                    alert(result.error || result.message || 'There was an error. Please try again.');
+                    console.error(result.detail || result);
+                }
+            } catch (err) {
+                alert('Request failed. Please try again later.');
+                console.error(err);
+            }
+        });
     });
 </script>
 
-</script>
